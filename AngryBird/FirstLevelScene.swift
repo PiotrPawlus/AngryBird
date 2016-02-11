@@ -37,6 +37,9 @@ class FirstLevelScene: SKScene {
         bird.zPosition = 1
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.width * 0.5)
         
+        bird.physicsBody?.dynamic = true
+        bird.physicsBody?.allowsRotation = true
+        bird.physicsBody?.affectedByGravity = false
         self.addChild(bird)
         
     }
