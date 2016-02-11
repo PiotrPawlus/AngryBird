@@ -20,7 +20,7 @@ class FirstLevelScene: SKScene {
         // Set background
         let background = BackgroundSpriteNode(imageNamed: "background", size: self.frame.size)
         background.zPosition = -2
-        self.addChild(background)
+//        self.addChild(background)
         
         // Set ground
         let ground = SKSpriteNode(imageNamed: "ground")
@@ -30,7 +30,7 @@ class FirstLevelScene: SKScene {
         ground.physicsBody?.dynamic = false
         ground.physicsBody?.allowsRotation = false
         ground.physicsBody?.affectedByGravity = false
-        self.addChild(ground)
+//        self.addChild(ground)
         
         // Set bird
         let bird = SKSpriteNode(imageNamed: "ptak")
@@ -41,16 +41,26 @@ class FirstLevelScene: SKScene {
         bird.physicsBody?.dynamic = true
         bird.physicsBody?.allowsRotation = true
         bird.physicsBody?.affectedByGravity = false
-        self.addChild(bird)
+//        self.addChild(bird)
         
         // Set menu back button
-        menuButton = SKButtonNode(defaultButtonImage: "stop", activeButtonImage: "stop", disabledButtonImage: "stop", buttonAction: <#T##() -> Void#>)
-        
+        menuButton = SKButtonNode(defaultButtonImage: "stop-1", activeButtonImage: "stop-1", disabledButtonImage: "stop-1", buttonAction: stopMenu)
+        menuButton.enabled = true
+        menuButton.setScale(0.2)
+        menuButton.position = CGPoint(x: 40.0, y: self.frame.size.height - 40.0)
+        menuButton.zPosition = 0
+        self.addChild(menuButton)
+    
+
         // Set point label
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func stopMenu() {
+        print("Tu się pojawi menu gry")
     }
     
 }

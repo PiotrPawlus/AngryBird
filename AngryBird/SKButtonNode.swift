@@ -11,7 +11,7 @@ import SpriteKit
 class SKButtonNode: SKNode {
     var defaultButton: SKSpriteNode
     var activeButton: SKSpriteNode
-    var disabledButton: SKSpriteNode
+    var disabledButton: SKSpriteNode!
     var action: () -> Void
     var enabled: Bool {
         get {
@@ -44,22 +44,6 @@ class SKButtonNode: SKNode {
         
         super.init()
 
-        self.enabled = true
-        userInteractionEnabled = true
-        addChild(defaultButton)
-        addChild(activeButton)
-        addChild(disabledButton)
-    }
-    
-    init(defaultButtonImage: String, activeButtonImage: String, buttonAction: () -> Void) {
-        defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
-        activeButton = SKSpriteNode(imageNamed: activeButtonImage)        
-        activeButton.hidden = true
-        disabledButton.hidden = true
-        action = buttonAction
-        
-        super.init()
-        
         self.enabled = true
         userInteractionEnabled = true
         addChild(defaultButton)
