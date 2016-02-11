@@ -22,6 +22,7 @@ class FirstLevelScene: SKScene {
         background.zPosition = -2
         self.addChild(background)
         
+        // Set ground
         let ground = SKSpriteNode(imageNamed: "ground")
         ground.position = CGPoint(x: 0, y: 0)
         background.zPosition = 1
@@ -31,17 +32,21 @@ class FirstLevelScene: SKScene {
         ground.physicsBody?.affectedByGravity = false
         self.addChild(ground)
         
+        // Set bird
         let bird = SKSpriteNode(imageNamed: "ptak")
         bird.position = CGPoint(x: 100.0, y: ground.size.height + 30.0)
         bird.setScale(0.2)
         bird.zPosition = 1
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.width * 0.5)
-        
         bird.physicsBody?.dynamic = true
         bird.physicsBody?.allowsRotation = true
         bird.physicsBody?.affectedByGravity = false
         self.addChild(bird)
         
+        // Set menu back button
+        menuButton = SKButtonNode(defaultButtonImage: "stop", activeButtonImage: "stop", disabledButtonImage: "stop", buttonAction: <#T##() -> Void#>)
+        
+        // Set point label
     }
     
     required init?(coder aDecoder: NSCoder) {
