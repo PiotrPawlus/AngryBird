@@ -51,6 +51,22 @@ class SKButtonNode: SKNode {
         addChild(disabledButton)
     }
     
+    init(defaultButtonImage: String, activeButtonImage: String, buttonAction: () -> Void) {
+        defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
+        activeButton = SKSpriteNode(imageNamed: activeButtonImage)        
+        activeButton.hidden = true
+        disabledButton.hidden = true
+        action = buttonAction
+        
+        super.init()
+        
+        self.enabled = true
+        userInteractionEnabled = true
+        addChild(defaultButton)
+        addChild(activeButton)
+        addChild(disabledButton)
+    }
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -59,7 +75,6 @@ class SKButtonNode: SKNode {
         if enabled {
             activeButton.hidden = false
             defaultButton.hidden = true
-            disabledButton.hidden = true
         }
     }
     
@@ -70,11 +85,9 @@ class SKButtonNode: SKNode {
         if defaultButton.containsPoint(location) {
             activeButton.hidden = false
             defaultButton.hidden = true
-            disabledButton.hidden = true
         } else {
             activeButton.hidden = true
             defaultButton.hidden = false
-            disabledButton.hidden = true
         }
     }
     
