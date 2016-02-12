@@ -39,16 +39,15 @@ class BirdSpriteNode: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(circleOfRadius: birdSize.width * 0.2 / 2)
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
-        self.physicsBody?.affectedByGravity = false
-        
+        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.mass = 0.05
         // !!!
+        print("BIRD MASS: \(self.physicsBody?.mass)")
         self.userInteractionEnabled = true
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print ("touhc");
-        
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {        
         startupPosition = self.position
         startupTouchPosition = touches.first?.locationInNode(self.parent!)
     }
@@ -65,8 +64,7 @@ class BirdSpriteNode: SKSpriteNode {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let actualTouchPosition = touches.first?.locationInNode(self.parent!)
-        let moveVector = CGVector(dx:
-            10.0 * (self.startupTouchPosition!.x - actualTouchPosition!.x), dy: 10.0 * ( self.startupTouchPosition!.y - actualTouchPosition!.y) )
+        let moveVector = CGVector(dx: (self.startupTouchPosition!.x - actualTouchPosition!.x), dy: ( self.startupTouchPosition!.y - actualTouchPosition!.y) )
         
         self.physicsBody?.dynamic=true
         self.physicsBody?.applyImpulse(moveVector)
