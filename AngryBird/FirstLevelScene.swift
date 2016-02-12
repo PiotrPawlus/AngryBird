@@ -6,6 +6,14 @@
 //  Copyright © 2016 Piotr Pawluś. All rights reserved.
 //
 
+/*
+1. zakonczenie rundy, dlaczego, widok
+2. odblokowanie następnego poziomu
+3. menu przejsciowe
+4. dzwieki
+5. snieg?
+*/
+
 import SpriteKit
 
 class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
@@ -13,6 +21,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     var pointLabel: SKLabelNode!
     var ground: SKSpriteNode!
     var firstPig: PigSpriteNode!
+    
     
     override init(size: CGSize) {
         super.init(size: size)

@@ -24,6 +24,8 @@
 		C11880DB1C6DD633005202DB /* StoneSpirteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880DA1C6DD633005202DB /* StoneSpirteNode.swift */; };
 		C11880DD1C6E0CEE005202DB /* PigSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880DC1C6E0CEE005202DB /* PigSpriteNode.swift */; };
 		C11880DF1C6E40F0005202DB /* PointsCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880DE1C6E40F0005202DB /* PointsCounter.swift */; };
+		C11880E21C6E6561005202DB /* snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = C11880E01C6E6561005202DB /* snow.sks */; };
+		C11880E31C6E6561005202DB /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C11880E11C6E6561005202DB /* spark.png */; };
 		C1E36C741C6DC289009D1215 /* SharedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C731C6DC289009D1215 /* SharedNode.swift */; };
 		C1E36C761C6DC422009D1215 /* ObjectZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,8 @@
 		C11880DA1C6DD633005202DB /* StoneSpirteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoneSpirteNode.swift; sourceTree = "<group>"; };
 		C11880DC1C6E0CEE005202DB /* PigSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PigSpriteNode.swift; sourceTree = "<group>"; };
 		C11880DE1C6E40F0005202DB /* PointsCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsCounter.swift; sourceTree = "<group>"; };
+		C11880E01C6E6561005202DB /* snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = snow.sks; sourceTree = "<group>"; };
+		C11880E11C6E6561005202DB /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		C1E36C731C6DC289009D1215 /* SharedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedNode.swift; sourceTree = "<group>"; };
 		C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectZPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +99,8 @@
 				C10D816C1C6CF0E80094F40F /* GameViewController.swift */,
 				C10D81801C6CFD9A0094F40F /* SKButtonNode.swift */,
 				C10D816E1C6CF0E80094F40F /* Main.storyboard */,
+				C11880E01C6E6561005202DB /* snow.sks */,
+				C11880E11C6E6561005202DB /* spark.png */,
 				C10D81821C6CFFDE0094F40F /* Assets.xcassets */,
 				C10D81731C6CF0E80094F40F /* LaunchScreen.storyboard */,
 				C10D81761C6CF0E80094F40F /* Info.plist */,
@@ -172,8 +178,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11880E31C6E6561005202DB /* spark.png in Resources */,
 				C10D81751C6CF0E80094F40F /* LaunchScreen.storyboard in Resources */,
 				C10D81831C6CFFDE0094F40F /* Assets.xcassets in Resources */,
+				C11880E21C6E6561005202DB /* snow.sks in Resources */,
 				C10D81701C6CF0E80094F40F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
