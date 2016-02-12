@@ -23,15 +23,7 @@ class SharedNode: SKNode {
         background.zPosition = ObjectZPosition.background
         self.addChild(background)
         
-        // Set ground
-        let ground = SKSpriteNode(imageNamed: "ground")
-        ground.position = CGPoint(x: 0, y: 0)
-        background.zPosition = ObjectZPosition.middleground
-        ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
-        ground.physicsBody?.dynamic = false
-        ground.physicsBody?.allowsRotation = false
-        ground.physicsBody?.affectedByGravity = false
-        self.addChild(ground)
+
         
         // Set bird
         let bird = BirdSpriteNode(imageNamed: "ptak", size: size)
