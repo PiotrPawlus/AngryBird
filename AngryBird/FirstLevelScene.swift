@@ -19,8 +19,14 @@ class FirstLevelScene: SKScene {
         let shared = SharedNode(size: size, scene: self)
         self.addChild(shared)
         
-        let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: 90.0, rotate: 90.0)
+        let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: 90.0, rotateOnDegree: 0.0)
         self.addChild(firstStone)
+        
+        let secondStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 87.0, posY: firstStone.size.height + 50.0, rotateOnDegree: 90.0)
+        self.addChild(secondStone)
+        
+        let thirdStone = StoneSpirteNode(imageNamed: "stone_v_2", size: size, posX: self.frame.size.width - 125.0, posY: 80.0, rotateOnDegree: 0.0)
+        self.addChild(thirdStone)
     }
     
     required init?(coder aDecoder: NSCoder) {

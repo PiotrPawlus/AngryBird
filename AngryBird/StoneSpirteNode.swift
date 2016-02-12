@@ -10,13 +10,14 @@ import SpriteKit
 
 class StoneSpirteNode: SKSpriteNode {
     
-    private var scale: CGFloat = 0.6
+    private let π: CGFloat = CGFloat(M_PI)
+    private let scale: CGFloat = 0.6
     private var stoneSize: CGSize!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    init(imageNamed: String, size: CGSize, posX x: CGFloat, posY y: CGFloat, rotate angle: CGFloat) {
+    init(imageNamed: String, size: CGSize, posX x: CGFloat, posY y: CGFloat, rotateOnDegree angle: CGFloat) {
         let texture = SKTexture(imageNamed: imageNamed)
         self.stoneSize = CGSize(width: texture.size().width * self.scale, height: texture.size().height * self.scale)
         super.init(texture: texture, color: UIColor.clearColor(), size: self.stoneSize)
@@ -28,8 +29,10 @@ class StoneSpirteNode: SKSpriteNode {
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.mass = 0.9
-        print("STONE MASS: \(self.physicsBody?.mass)")
-
+        
+        let radius = angle * π / 180
+        let rotateBy = SKAction.rotateByAngle(radius, duration: 0.0)
+        self.runAction(rotateBy)
         // !!!
         self.userInteractionEnabled = false
     }
