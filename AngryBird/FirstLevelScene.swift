@@ -19,7 +19,7 @@ class FirstLevelScene: SKScene {
         let shared = SharedNode(size: size, scene: self)
         self.addChild(shared)
         
-        let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: 100.0, rotate: 90.0)
+        let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: 90.0, rotate: 90.0)
         self.addChild(firstStone)
     }
     
