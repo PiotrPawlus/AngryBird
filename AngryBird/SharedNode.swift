@@ -53,5 +53,7 @@ extension SKScene {
     func backToMenu() {
         print("Tu się pojawi menu gry")
         self.view?.presentScene(MenuScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+        PointsCounter.enableCounting = false
+        PointsCounter.points = 0
     }
 }

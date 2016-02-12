@@ -35,6 +35,12 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         ground.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Ground
         self.addChild(ground)
         
+        pointLabel = SKLabelNode(fontNamed: "Chalkduster")
+        pointLabel.fontColor = UIColor.redColor()
+        pointLabel.fontSize = 25
+        pointLabel.position = CGPoint(x: 200.0, y: self.frame.height - 50.0)
+        self.addChild(pointLabel)
+        
         let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: ground.size.height - 1.0, rotateOnDegree: 0.0)
         self.addChild(firstStone)
         
@@ -55,12 +61,16 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: NSTimeInterval) {
-        print(firstPig.size.height)
+        pointLabel.text = "Points: \(PointsCounter.points)"
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Stone || contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Stone) {
+        if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Stone) {
             print("Contact wity stone")
+            (contact.bodyA.node as! StoneSpirteNode).takeHP()
+        }
+        if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Stone) {
+            (contact.bodyB.node as! StoneSpirteNode).takeHP()
         }
         
     }
