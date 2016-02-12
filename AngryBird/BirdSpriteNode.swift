@@ -42,7 +42,7 @@ class BirdSpriteNode: SKSpriteNode {
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.mass = 0.05
+        self.physicsBody?.mass = 0.07
         // !!!
         print("BIRD MASS: \(self.physicsBody?.mass)")
         self.userInteractionEnabled = true
@@ -72,6 +72,10 @@ class BirdSpriteNode: SKSpriteNode {
         self.physicsBody?.applyImpulse(moveVector)
         
         self.runAction(SKAction.group([SKAction.playSoundFileNamed("door.aif", waitForCompletion: false),animateWings]))
+        
+        self.physicsBody?.affectedByGravity = true
+        self.userInteractionEnabled = false
+        PointsCounter.enableCounting = true
     }
 
 }
