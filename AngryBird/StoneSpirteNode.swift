@@ -28,7 +28,7 @@ class StoneSpirteNode: SKSpriteNode {
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = true
-        self.physicsBody?.mass = 0.9
+        self.physicsBody?.mass = 0.6
         
         let radius = angle * π / 180
         let rotateBy = SKAction.rotateByAngle(radius, duration: 0.0)
