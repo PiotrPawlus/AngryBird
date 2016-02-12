@@ -10,8 +10,9 @@ import SpriteKit
 
 class BirdSpriteNode: SKSpriteNode {
 
-    var startupPosition:CGPoint?
-    var startupTouchPosition:CGPoint?
+    private var scale: CGFloat = 0.18
+    private var startupPosition:CGPoint?
+    private var startupTouchPosition:CGPoint?
     
     let animateWings = SKAction.repeatActionForever(SKAction.animateWithNormalTextures(
         [
@@ -31,15 +32,16 @@ class BirdSpriteNode: SKSpriteNode {
     
     init(imageNamed: String, size: CGSize) {
         let texture = SKTexture(imageNamed: imageNamed)
-        let birdSize = texture.size()
+        let birdSize = CGSize(width: texture.size().width * self.scale, height: texture.size().height * self.scale)
+
         super.init(texture: texture, color: UIColor.clearColor(), size: birdSize)
         self.position = CGPoint(x: 100.0, y: size.height / 2 - 30.0)
-        self.setScale(0.2)
         self.zPosition = ObjectZPosition.middleground
-        self.physicsBody = SKPhysicsBody(circleOfRadius: birdSize.width * 0.2 / 2)
+//        self.physicsBody = SKPhysicsBody(circleOfRadius: birdSize.width * 0.2 / 2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: birdSize.width / 2)
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
-        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.affectedByGravity = false
         self.physicsBody?.mass = 0.05
         // !!!
         print("BIRD MASS: \(self.physicsBody?.mass)")
