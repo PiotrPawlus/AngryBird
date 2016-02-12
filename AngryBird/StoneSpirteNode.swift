@@ -13,6 +13,7 @@ class StoneSpirteNode: SKSpriteNode {
     private let π: CGFloat = CGFloat(M_PI)
     private let scale: CGFloat = 0.6
     private var stoneSize: CGSize!
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -30,11 +31,18 @@ class StoneSpirteNode: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.mass = 0.6
         
+        self.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Stone
+        self.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.Stone
+        
         let radius = angle * π / 180
         let rotateBy = SKAction.rotateByAngle(radius, duration: 0.0)
         self.runAction(rotateBy)
         // !!!
         self.userInteractionEnabled = false
+    }
+    
+    func takeHP() {
+        
     }
     
 }
