@@ -24,11 +24,4 @@ class FirstLevelScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-//    func backToMenu() {
-//        let reval = SKTransition.fadeWithDuration(0.5)
-//        let firstLevel = MenuScene(size: self.size)
-//        self.view!.presentScene(firstLevel, transition: reval)
-//    }
-
 }

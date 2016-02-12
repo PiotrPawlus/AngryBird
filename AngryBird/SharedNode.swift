@@ -34,16 +34,8 @@ class SharedNode: SKNode {
         self.addChild(ground)
         
         // Set bird
-        let bird = SKSpriteNode(imageNamed: "ptak")
-        bird.position = CGPoint(x: 100.0, y: ground.size.height + 30.0)
-        bird.setScale(0.2)
-        bird.zPosition = ObjectZPosition.middleground
-        bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.width * 0.5)
-        bird.physicsBody?.dynamic = true
-        bird.physicsBody?.allowsRotation = true
-        bird.physicsBody?.affectedByGravity = false
+        let bird = BirdSpriteNode(imageNamed: "ptak", size: size)
         self.addChild(bird)
-        
         
         // Set menu back button
         let menuButton = SKButtonNode(defaultButtonImage: "stop-1", activeButtonImage: "stop-1", disabledButtonImage: "stop-1", buttonAction: stopMenu)

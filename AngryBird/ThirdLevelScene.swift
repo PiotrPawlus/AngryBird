@@ -14,11 +14,8 @@ class ThirdLevelScene: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
-        print("PIERWSZY POZIOM")
+        print("TRZECI POZIOM")
         
-        let background = BackgroundSpriteNode(imageNamed: "background", size: self.frame.size)
-        background.zPosition = -2
-        //self.addChild(background)
     }
     
     required init?(coder aDecoder: NSCoder) {
