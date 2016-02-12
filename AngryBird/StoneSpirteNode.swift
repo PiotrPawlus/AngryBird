@@ -10,7 +10,7 @@ import SpriteKit
 
 class StoneSpirteNode: SKSpriteNode {
     
-    private var scale: CGFloat = 0.5
+    private var scale: CGFloat = 0.6
     private var stoneSize: CGSize!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
