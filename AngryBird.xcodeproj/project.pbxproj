@@ -21,6 +21,7 @@
 		C10D818B1C6D24020094F40F /* ThirdLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10D818A1C6D24020094F40F /* ThirdLevelScene.swift */; };
 		C10D81901C6D2A0D0094F40F /* CollisionCategoryBitmask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10D818F1C6D2A0D0094F40F /* CollisionCategoryBitmask.swift */; };
 		C11880D91C6DCFA3005202DB /* BirdSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880D81C6DCFA3005202DB /* BirdSpriteNode.swift */; };
+		C11880DB1C6DD633005202DB /* StoneSpirteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880DA1C6DD633005202DB /* StoneSpirteNode.swift */; };
 		C1E36C741C6DC289009D1215 /* SharedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C731C6DC289009D1215 /* SharedNode.swift */; };
 		C1E36C761C6DC422009D1215 /* ObjectZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		C10D818A1C6D24020094F40F /* ThirdLevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdLevelScene.swift; sourceTree = "<group>"; };
 		C10D818F1C6D2A0D0094F40F /* CollisionCategoryBitmask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionCategoryBitmask.swift; sourceTree = "<group>"; };
 		C11880D81C6DCFA3005202DB /* BirdSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdSpriteNode.swift; sourceTree = "<group>"; };
+		C11880DA1C6DD633005202DB /* StoneSpirteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoneSpirteNode.swift; sourceTree = "<group>"; };
 		C1E36C731C6DC289009D1215 /* SharedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedNode.swift; sourceTree = "<group>"; };
 		C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectZPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,16 +81,17 @@
 				C10D81661C6CF0E80094F40F /* AppDelegate.swift */,
 				C10D818F1C6D2A0D0094F40F /* CollisionCategoryBitmask.swift */,
 				C10D817C1C6CF2100094F40F /* MenuScene.swift */,
+				C10D81861C6D21110094F40F /* BackgroundSpriteNode.swift */,
 				C11880D81C6DCFA3005202DB /* BirdSpriteNode.swift */,
+				C11880DA1C6DD633005202DB /* StoneSpirteNode.swift */,
 				C10D818E1C6D27030094F40F /* FirstGroupOfLvl */,
 				C10D817E1C6CF78E0094F40F /* GameScene.swift */,
 				C10D816C1C6CF0E80094F40F /* GameViewController.swift */,
+				C10D81801C6CFD9A0094F40F /* SKButtonNode.swift */,
 				C10D816E1C6CF0E80094F40F /* Main.storyboard */,
 				C10D81821C6CFFDE0094F40F /* Assets.xcassets */,
 				C10D81731C6CF0E80094F40F /* LaunchScreen.storyboard */,
 				C10D81761C6CF0E80094F40F /* Info.plist */,
-				C10D81801C6CFD9A0094F40F /* SKButtonNode.swift */,
-				C10D81861C6D21110094F40F /* BackgroundSpriteNode.swift */,
 			);
 			path = AngryBird;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				C10D81871C6D21110094F40F /* BackgroundSpriteNode.swift in Sources */,
 				C10D817D1C6CF2100094F40F /* MenuScene.swift in Sources */,
 				C10D818B1C6D24020094F40F /* ThirdLevelScene.swift in Sources */,
+				C11880DB1C6DD633005202DB /* StoneSpirteNode.swift in Sources */,
 				C10D81891C6D23C50094F40F /* SecondLevelScene.swift in Sources */,
 				C1E36C741C6DC289009D1215 /* SharedNode.swift in Sources */,
 				C1E36C761C6DC422009D1215 /* ObjectZPosition.swift in Sources */,
