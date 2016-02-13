@@ -15,9 +15,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         let skView = self.view as! SKView
         
-        skView.showsFPS = true
-        skView.showsDrawCount = true
-        skView.showsPhysics = true
+//        skView.showsFPS = true
+//        skView.showsDrawCount = true
+//        skView.showsPhysics = true
         let scene = MenuScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFit
         skView.presentScene(scene)

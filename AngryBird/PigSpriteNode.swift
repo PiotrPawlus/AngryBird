@@ -35,4 +35,16 @@ class PigSpriteNode: SKSpriteNode {
         // !!!
         self.userInteractionEnabled = false
     }
+    
+    func destroyPig() -> Bool {
+        var isDestroied = false
+        if(PointsCounter.addPoint()) {
+            self.runAction(SKAction.sequence([SKAction.fadeAlphaBy(-0.1, duration: 0.0)]))
+        }
+        if(self.alpha < 0.7) {
+            self.runAction(SKAction.sequence([SKAction.removeFromParent()]))
+            isDestroied = true
+        }
+        return isDestroied
+    }
 }

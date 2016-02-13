@@ -11,10 +11,14 @@ import UIKit
 class PointsCounter {
     static var points: Int = 0
     static var enableCounting = false
+    static var pigTouched = false
     
     class func addPoint() -> Bool {
-        if(enableCounting) {
+        if enableCounting {
             points += 1
+        }
+        if pigTouched {
+            points += 5
         }
         return enableCounting
     }

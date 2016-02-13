@@ -12,6 +12,11 @@
 3. menu przejsciowe
 4. dzwieki
 5. snieg?
+
+
+Lista do Appstore:
+ - 1024x1024
+ -
 */
 
 import SpriteKit
@@ -21,7 +26,8 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     var pointLabel: SKLabelNode!
     var ground: SKSpriteNode!
     var firstPig: PigSpriteNode!
-    
+    private var gameLevel = 1
+    weak var deg: MenuScene?
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -75,12 +81,22 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     
     func didBeginContact(contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Stone) {
-            print("Contact wity stone")
             (contact.bodyA.node as! StoneSpirteNode).takeHP()
         }
         if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Stone) {
             (contact.bodyB.node as! StoneSpirteNode).takeHP()
         }
-        
+        if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) {
+            if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
+                // udostępnij poziom
+                Level.unlockLevel(gameLevel)
+            }
+        }
+        if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Pig) {
+            if (contact.bodyB.node as! PigSpriteNode).destroyPig() {
+                // udostępnij poziom
+                Level.unlockLevel(gameLevel)
+            }
+        }
     }
 }

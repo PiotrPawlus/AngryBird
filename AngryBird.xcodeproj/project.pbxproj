@@ -26,6 +26,7 @@
 		C11880DF1C6E40F0005202DB /* PointsCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880DE1C6E40F0005202DB /* PointsCounter.swift */; };
 		C11880E21C6E6561005202DB /* snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = C11880E01C6E6561005202DB /* snow.sks */; };
 		C11880E31C6E6561005202DB /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C11880E11C6E6561005202DB /* spark.png */; };
+		C11880E51C6F5127005202DB /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880E41C6F5127005202DB /* Level.swift */; };
 		C1E36C741C6DC289009D1215 /* SharedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C731C6DC289009D1215 /* SharedNode.swift */; };
 		C1E36C761C6DC422009D1215 /* ObjectZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		C11880DE1C6E40F0005202DB /* PointsCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsCounter.swift; sourceTree = "<group>"; };
 		C11880E01C6E6561005202DB /* snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = snow.sks; sourceTree = "<group>"; };
 		C11880E11C6E6561005202DB /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		C11880E41C6F5127005202DB /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		C1E36C731C6DC289009D1215 /* SharedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedNode.swift; sourceTree = "<group>"; };
 		C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectZPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 				C11880D81C6DCFA3005202DB /* BirdSpriteNode.swift */,
 				C11880DA1C6DD633005202DB /* StoneSpirteNode.swift */,
 				C11880DE1C6E40F0005202DB /* PointsCounter.swift */,
+				C11880E41C6F5127005202DB /* Level.swift */,
 				C11880DC1C6E0CEE005202DB /* PigSpriteNode.swift */,
 				C10D818E1C6D27030094F40F /* FirstGroupOfLvl */,
 				C10D817E1C6CF78E0094F40F /* GameScene.swift */,
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11880E51C6F5127005202DB /* Level.swift in Sources */,
 				C10D81811C6CFD9A0094F40F /* SKButtonNode.swift in Sources */,
 				C10D81871C6D21110094F40F /* BackgroundSpriteNode.swift in Sources */,
 				C10D817D1C6CF2100094F40F /* MenuScene.swift in Sources */,
@@ -319,6 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AngryBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = piotr.pawlus.AngryBird;
@@ -330,6 +335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AngryBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = piotr.pawlus.AngryBird;

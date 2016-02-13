@@ -11,19 +11,14 @@ import SpriteKit
 
 class MenuScene: SKScene {
     
-    var firstLevelButton: SKButtonNode!
-    var secondLevelButton: SKButtonNode!
-    var thirdLevelButton: SKButtonNode!
-    
-    var background: SKSpriteNode!
+    private var firstLevelButton: SKButtonNode!
+    private var secondLevelButton: SKButtonNode!
+    private var thirdLevelButton: SKButtonNode!
+    private var background: SKSpriteNode!
     
     override init(size: CGSize) {
         super.init(size: size)
 
-//        Tło musi być wielkości odpowiedniej
-//        background = SKSpriteNode(imageNamed: "footer-background-min")
-//        background.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
-//        self.addChild(background)
         let yPositonOfButtons = self.frame.size.height / 2 - 50.0
         
         self.addChild(self.setTilteLabel())
@@ -33,16 +28,14 @@ class MenuScene: SKScene {
         self.addChild(firstLevelButton)
         
         secondLevelButton = SKButtonNode(defaultButtonImage: "blueColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToFirstLevel)
-        secondLevelButton.enabled = false
         secondLevelButton.position = CGPointMake(self.frame.width / 2, yPositonOfButtons)
         self.addChild(secondLevelButton)
         
         thirdLevelButton = SKButtonNode(defaultButtonImage: "greenColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToFirstLevel)
-        thirdLevelButton.enabled = false
         thirdLevelButton.position = CGPointMake(self.frame.width / 2 + 80.0, yPositonOfButtons)
         self.addChild(thirdLevelButton)
         
-        
+        self.unlockLevel(Level.gameLevel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,7 +49,6 @@ class MenuScene: SKScene {
     
     // MARK: - Update
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
     }
     
     // MRAK: - Functions
@@ -67,6 +59,25 @@ class MenuScene: SKScene {
         titleLabel.fontColor = UIColor.whiteColor()
         titleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 100.0)
         return titleLabel
+    }
+    
+    func unlockLevel(levelToUnlock: Int) {
+        print("Odblokowuje poziom \(levelToUnlock)")
+        switch levelToUnlock {
+        case 1:
+            secondLevelButton.enabled = false
+            thirdLevelButton.enabled = false
+        case 2:
+            secondLevelButton.enabled = true
+            thirdLevelButton.enabled = false
+        case 3:
+            secondLevelButton.enabled = true
+            thirdLevelButton.enabled = true
+        default:
+            firstLevelButton.enabled = true
+            secondLevelButton.enabled = true
+            thirdLevelButton.enabled = true
+        }
     }
     
     func goToFirstLevel() {
