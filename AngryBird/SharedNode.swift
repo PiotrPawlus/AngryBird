@@ -47,20 +47,18 @@ class SharedNode: SKNode {
             self.delegate?.startGame(self.stopButton)
         })
         startButton.enabled = false
-        startButton.setScale(0.2)
-        startButton.position = CGPoint(x: 140.0, y: size.height - 40.0)
+        startButton.position = CGPoint(x: 110.0, y: size.height - 40.0)
         startButton.zPosition = ObjectZPosition.hud
         self.addChild(startButton)
         
         
-        stopButton = SKButtonNode(defaultButtonImage: "stop-1", activeButtonImage: "stop-1", disabledButtonImage: "stop-1", buttonAction: { () -> Void in
+        stopButton = SKButtonNode(defaultButtonImage: "pauza", activeButtonImage: "pauza", disabledButtonImage: "pauza", buttonAction: { () -> Void in
             self.stopButton.enabled = false
             self.startButton.enabled = true
             self.delegate?.stopGame(self.startButton)
         })
         stopButton.enabled = true
-        stopButton.setScale(0.2)
-        stopButton.position = CGPoint(x: 80.0, y: size.height - 40.0)
+        stopButton.position = CGPoint(x: 70.0, y: size.height - 40.0)
         stopButton.zPosition = ObjectZPosition.hud
         self.addChild(stopButton)
     

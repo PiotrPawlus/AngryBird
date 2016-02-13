@@ -26,16 +26,14 @@ class FinishedLevelScene: SKScene {
         pointsLabel.text = "Score: \(PointsCounter.points)"
         self.addChild(pointsLabel)
         
-        let menuButton = SKButtonNode(defaultButtonImage: "stop-1", activeButtonImage: "stop-1", disabledButtonImage: "stop-1", buttonAction: self.backToMenu)
+        let menuButton = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: self.backToMenu)
         menuButton.enabled = true
-        menuButton.setScale(0.2)
         menuButton.position = CGPoint(x: self.frame.size.width / 2 - 30.0, y: self.frame.size.height / 2 - 50.0)
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
         let nextLevel = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: self.nextLevel)
         nextLevel.enabled = true
-        nextLevel.setScale(0.2)
         nextLevel.position = CGPoint(x: self.frame.size.width / 2 + 30.0, y: self.frame.size.height / 2 - 50.0)
         nextLevel.zPosition = ObjectZPosition.hud
         self.addChild(nextLevel)
