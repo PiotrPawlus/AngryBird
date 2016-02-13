@@ -27,7 +27,7 @@ class MenuScene: SKScene {
         firstLevelButton.position = CGPointMake(self.frame.width / 2 - 80.0, yPositonOfButtons)
         self.addChild(firstLevelButton)
         
-        secondLevelButton = SKButtonNode(defaultButtonImage: "blueColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToFirstLevel)
+        secondLevelButton = SKButtonNode(defaultButtonImage: "blueColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToSecondLevel)
         secondLevelButton.position = CGPointMake(self.frame.width / 2, yPositonOfButtons)
         self.addChild(secondLevelButton)
         
@@ -90,8 +90,8 @@ class MenuScene: SKScene {
     func goToSecondLevel() {
         print("Poziom 2")
         let reval = SKTransition.fadeWithDuration(0.5)
-        let firstLevel = SecondLevelScene(size: self.size)
-        self.view!.presentScene(firstLevel, transition: reval)
+        let secondLevel = SecondLevelScene(size: self.size)
+        self.view!.presentScene(secondLevel, transition: reval)
     }
     
     func goToThirdLevel() {

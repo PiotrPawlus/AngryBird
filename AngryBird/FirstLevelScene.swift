@@ -8,7 +8,6 @@
 
 /*
 1. zakonczenie rundy, dlaczego, widok
-2. odblokowanie następnego poziomu
 3. menu przejsciowe
 4. dzwieki
 5. snieg?
@@ -68,7 +67,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         firstPig = PigSpriteNode(imageNamed: "wrog", size: size, posX: self.frame.size.width - 85.0 , posY: ground.size.height - 1.0)
         self.addChild(firstPig)
         
-        
+        Level.gameLevel = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,12 +88,15 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
                 // udostępnij poziom
+                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
                 Level.unlockLevel(gameLevel)
             }
         }
         if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyB.node as! PigSpriteNode).destroyPig() {
                 // udostępnij poziom
+                
+                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
                 Level.unlockLevel(gameLevel)
             }
         }

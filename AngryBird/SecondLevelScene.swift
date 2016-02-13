@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class SecondLevelScene: SKScene {
+class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
     var menuButton: SKButtonNode!
     var pointLabel: SKLabelNode!
     
@@ -16,6 +16,12 @@ class SecondLevelScene: SKScene {
         super.init(size: size)
         print("DRUGI POZIOM")
     
+        self.physicsWorld.contactDelegate = self
+        
+        let shared = SharedNode(size: size, scene: self)
+        self.addChild(shared)
+        
+        Level.gameLevel = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
