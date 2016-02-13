@@ -23,7 +23,6 @@ import SpriteKit
 class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     
     var pointLabel: SKLabelNode!
-    var ground: SKSpriteNode!
     var firstPig: PigSpriteNode!
     private var gameLevel = 1
     weak var deg: MenuScene?
@@ -38,16 +37,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(shared)
         
         // Set ground
-        ground = SKSpriteNode(imageNamed: "ground")
-        ground.position = CGPoint(x: 0, y: 0)
-        ground.zPosition = ObjectZPosition.middleground
-        ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
-        ground.physicsBody?.dynamic = false
-        ground.physicsBody?.allowsRotation = false
-        ground.physicsBody?.affectedByGravity = false
-        ground.physicsBody?.collisionBitMask = CollisionCategoryBitmask.Ground
-        ground.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Ground
-        self.addChild(ground)
+
         
         pointLabel = SKLabelNode(fontNamed: "Chalkduster")
         pointLabel.fontColor = UIColor.redColor()
@@ -55,16 +45,16 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         pointLabel.position = CGPoint(x: 200.0, y: self.frame.height - 50.0)
         self.addChild(pointLabel)
         
-        let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: ground.size.height - 1.0, rotateOnDegree: 0.0)
+        let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: shared.ground.size.height - 1.0, rotateOnDegree: 0.0)
         self.addChild(firstStone)
         
-        let secondStone = StoneSpirteNode(imageNamed: "stone_v_2", size: size, posX: self.frame.size.width - 125.0, posY: ground.size.height - 1.0, rotateOnDegree: 0.0)
+        let secondStone = StoneSpirteNode(imageNamed: "stone_v_2", size: size, posX: self.frame.size.width - 125.0, posY: shared.ground.size.height - 1.0, rotateOnDegree: 0.0)
         self.addChild(secondStone)
         
         let thirdStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 87.0, posY: firstStone.size.height + 55.0, rotateOnDegree: 90.0)
         self.addChild(thirdStone)
         
-        firstPig = PigSpriteNode(imageNamed: "wrog", size: size, posX: self.frame.size.width - 85.0 , posY: ground.size.height - 1.0)
+        firstPig = PigSpriteNode(imageNamed: "wrog", size: size, posX: self.frame.size.width - 85.0 , posY: shared.ground.size.height - 1.0)
         self.addChild(firstPig)
         
         Level.gameLevel = 1

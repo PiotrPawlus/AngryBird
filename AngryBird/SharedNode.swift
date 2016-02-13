@@ -11,6 +11,7 @@ import SpriteKit
 class SharedNode: SKNode {
 
     var size: CGSize!
+    var ground: SKSpriteNode!
     weak var delegate: SKScene?
     
     init(size: CGSize, scene: SKScene) {
@@ -23,7 +24,16 @@ class SharedNode: SKNode {
         background.zPosition = ObjectZPosition.background
         self.addChild(background)
         
-
+        ground = SKSpriteNode(imageNamed: "ground")
+        ground.position = CGPoint(x: 0, y: 0)
+        ground.zPosition = ObjectZPosition.middleground
+        ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
+        ground.physicsBody?.dynamic = false
+        ground.physicsBody?.allowsRotation = false
+        ground.physicsBody?.affectedByGravity = false
+        ground.physicsBody?.collisionBitMask = CollisionCategoryBitmask.Ground
+        ground.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Ground
+        self.addChild(ground)
         
         // Set bird
         let bird = BirdSpriteNode(imageNamed: "ptak", size: size)
@@ -55,5 +65,18 @@ extension SKScene {
         self.view?.presentScene(MenuScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
         PointsCounter.enableCounting = false
         PointsCounter.points = 0
+    }
+    
+    func nextLevel() {
+        print("następny poziom")
+        let levelToUnlock = Level.getLevel()
+        switch levelToUnlock {
+        case 2:
+            self.view?.presentScene(SecondLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+        case 3:
+            self.view?.presentScene(ThirdLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+        default:
+            self.view?.presentScene(FirstLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+        }
     }
 }
