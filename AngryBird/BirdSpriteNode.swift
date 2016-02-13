@@ -71,7 +71,7 @@ class BirdSpriteNode: SKSpriteNode {
         self.physicsBody?.dynamic=true
         self.physicsBody?.applyImpulse(moveVector)
         
-        self.runAction(SKAction.group([SKAction.playSoundFileNamed("door.aif", waitForCompletion: false),animateWings]))
+        self.runAction(SKAction.group([animateWings]))
         
         self.physicsBody?.affectedByGravity = true
         self.userInteractionEnabled = false
