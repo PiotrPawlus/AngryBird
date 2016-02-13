@@ -24,6 +24,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     
     var pointLabel: SKLabelNode!
     var firstPig: PigSpriteNode!
+    var shared: SharedNode!
     private var gameLevel = 1
     weak var deg: MenuScene?
     
@@ -33,7 +34,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     
         self.physicsWorld.contactDelegate = self
         
-        let shared = SharedNode(size: size, scene: self)
+        shared = SharedNode(size: size, scene: self)
         self.addChild(shared)
         
         // Set ground
@@ -42,7 +43,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         pointLabel = SKLabelNode(fontNamed: "Chalkduster")
         pointLabel.fontColor = UIColor.redColor()
         pointLabel.fontSize = 25
-        pointLabel.position = CGPoint(x: 200.0, y: self.frame.height - 50.0)
+        pointLabel.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - 50.0)
         self.addChild(pointLabel)
         
         let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: shared.ground.size.height - 1.0, rotateOnDegree: 0.0)
@@ -74,6 +75,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         }
         if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Stone) {
             (contact.bodyB.node as! StoneSpirteNode).takeHP()
+
         }
         if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyA.node as! PigSpriteNode).destroyPig() {

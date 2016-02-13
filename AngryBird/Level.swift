@@ -10,6 +10,7 @@ import UIKit
 
 struct Level {
     static var gameLevel: Int = 1
+    static var maxGameLevelReached: Int = 1
     
     static func getLevel() -> Int{
         return self.gameLevel

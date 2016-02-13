@@ -13,6 +13,9 @@ class SharedNode: SKNode {
     var size: CGSize!
     var ground: SKSpriteNode!
     weak var delegate: SKScene?
+    var menuButton: SKButtonNode!
+    var stopButton: SKButtonNode!
+    var startButton: SKButtonNode!
     
     init(size: CGSize, scene: SKScene) {
         super.init()
@@ -39,13 +42,32 @@ class SharedNode: SKNode {
         let bird = BirdSpriteNode(imageNamed: "ptak", size: size)
         self.addChild(bird)
         
-        // Set menu back button
-        let menuButton = SKButtonNode(defaultButtonImage: "stop-1", activeButtonImage: "stop-1", disabledButtonImage: "stop-1", buttonAction: stopMenu)
+        startButton = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: { () -> Void in
+            self.startButton.enabled = false
+            self.delegate?.startGame(self.stopButton)
+        })
+        startButton.enabled = false
+        startButton.setScale(0.2)
+        startButton.position = CGPoint(x: 140.0, y: size.height - 40.0)
+        startButton.zPosition = ObjectZPosition.hud
+        self.addChild(startButton)
+        
+        
+        stopButton = SKButtonNode(defaultButtonImage: "stop-1", activeButtonImage: "stop-1", disabledButtonImage: "stop-1", buttonAction: { () -> Void in
+            self.stopButton.enabled = false
+            self.startButton.enabled = true
+            self.delegate?.stopGame(self.startButton)
+        })
+        stopButton.enabled = true
+        stopButton.setScale(0.2)
+        stopButton.position = CGPoint(x: 80.0, y: size.height - 40.0)
+        stopButton.zPosition = ObjectZPosition.hud
+        self.addChild(stopButton)
+    
+        menuButton = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: (self.delegate?.backToMenu)!)
         menuButton.enabled = true
-        menuButton.setScale(0.2)
-        menuButton.position = CGPoint(x: 40.0, y: size.height - 40.0)
+        menuButton.position = CGPoint(x: 30.0 , y: size.height - 40.0)
         menuButton.zPosition = ObjectZPosition.hud
-        print(menuButton.position)
         self.addChild(menuButton)
         
     }
@@ -54,9 +76,6 @@ class SharedNode: SKNode {
         super.init(coder: aDecoder)
     }
     
-    func stopMenu() {
-        delegate?.backToMenu()
-    }
 }
 
 extension SKScene {
@@ -78,5 +97,18 @@ extension SKScene {
         default:
             self.view?.presentScene(FirstLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
         }
+    }
+    
+    func stopGame(startButton: SKButtonNode)  {
+        print("Game stoped")
+        self.view?.paused = true
+        startButton.paused = false
+        
+    }
+    
+    func startGame(stopButon: SKButtonNode) {
+        print("Start game")
+        self.view?.paused = false
+        stopButon.enabled = true
     }
 }
