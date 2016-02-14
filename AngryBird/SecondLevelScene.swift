@@ -21,7 +21,7 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
         let shared = SharedNode(size: size, scene: self)
         self.addChild(shared)
         
-        Level.gameLevel = 1
+        Level.gameLevel = 2
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -21,6 +21,7 @@ class GameViewController: UIViewController {
         let scene = MenuScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFit
         skView.presentScene(scene)
+        Level.maxGameLevelReached = 1
     }
 
     override func shouldAutorotate() -> Bool {

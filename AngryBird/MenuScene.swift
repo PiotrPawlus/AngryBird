@@ -38,7 +38,7 @@ class MenuScene: SKScene {
         thirdLevelButton.setScale(2.0)
         self.addChild(thirdLevelButton)
         
-        self.unlockLevel(Level.gameLevel)
+        self.unlockLevel(Level.maxGameLevelReached)
     }
     
     required init?(coder aDecoder: NSCoder) {

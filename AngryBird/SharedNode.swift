@@ -16,6 +16,8 @@ class SharedNode: SKNode {
     var menuButton: SKButtonNode!
     var stopButton: SKButtonNode!
     var startButton: SKButtonNode!
+    var resetButton: SKButtonNode!
+
     
     init(size: CGSize, scene: SKScene) {
         super.init()
@@ -68,6 +70,14 @@ class SharedNode: SKNode {
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
+        resetButton = SKButtonNode(defaultButtonImage: "restart", activeButtonImage: "restart", disabledButtonImage: "restart", buttonAction:  { () -> Void in
+            self.delegate?.restartGame(Level.gameLevel)
+        })
+
+        resetButton.enabled = true
+        resetButton.position = CGPoint(x: 150.0 , y: size.height - 40.0)
+        resetButton.zPosition = ObjectZPosition.hud
+        self.addChild(resetButton)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -108,5 +118,16 @@ extension SKScene {
         print("Start game")
         self.view?.paused = false
         stopButon.enabled = true
+    }
+    
+    func restartGame(numberOfLevel: Int) {
+        PointsCounter.enableCounting = false
+        PointsCounter.points = 0
+        switch numberOfLevel {
+        case 1: self.view!.presentScene(FirstLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
+        case 2: self.view!.presentScene(SecondLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
+        case 3: self.view!.presentScene(ThirdLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
+        default: self.view!.presentScene(FirstLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
+        }
     }
 }

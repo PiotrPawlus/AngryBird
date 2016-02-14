@@ -18,5 +18,6 @@ struct Level {
     
     static func unlockLevel(gameLevel: Int) {
         self.gameLevel += 1
+        self.maxGameLevelReached += 1
     }
 }
