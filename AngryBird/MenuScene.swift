@@ -22,17 +22,20 @@ class MenuScene: SKScene {
         let yPositonOfButtons = self.frame.size.height / 2 - 50.0
         
         self.addChild(self.setTilteLabel())
-        firstLevelButton = SKButtonNode(defaultButtonImage: "redColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToFirstLevel)
+        firstLevelButton = SKButtonNode(defaultButtonImage: "1o", activeButtonImage: "1oc", disabledButtonImage: "1z", buttonAction: goToFirstLevel)
         firstLevelButton.enabled = true
         firstLevelButton.position = CGPointMake(self.frame.width / 2 - 80.0, yPositonOfButtons)
+        firstLevelButton.setScale(2.0)
         self.addChild(firstLevelButton)
         
-        secondLevelButton = SKButtonNode(defaultButtonImage: "blueColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToSecondLevel)
+        secondLevelButton = SKButtonNode(defaultButtonImage: "2o", activeButtonImage: "2oc", disabledButtonImage: "2z", buttonAction: goToSecondLevel)
         secondLevelButton.position = CGPointMake(self.frame.width / 2, yPositonOfButtons)
+        secondLevelButton.setScale(2.0)
         self.addChild(secondLevelButton)
         
-        thirdLevelButton = SKButtonNode(defaultButtonImage: "greenColor", activeButtonImage: "yellowColor", disabledButtonImage: "blackColor", buttonAction: goToFirstLevel)
+        thirdLevelButton = SKButtonNode(defaultButtonImage: "3o", activeButtonImage: "3oc", disabledButtonImage: "3z", buttonAction: goToFirstLevel)
         thirdLevelButton.position = CGPointMake(self.frame.width / 2 + 80.0, yPositonOfButtons)
+        thirdLevelButton.setScale(2.0)
         self.addChild(thirdLevelButton)
         
         self.unlockLevel(Level.gameLevel)

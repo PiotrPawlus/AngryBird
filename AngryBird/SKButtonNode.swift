@@ -41,7 +41,6 @@ class SKButtonNode: SKNode {
         activeButton.hidden = true
         disabledButton.hidden = true
         action = buttonAction
-        
         super.init()
 
         self.enabled = true
