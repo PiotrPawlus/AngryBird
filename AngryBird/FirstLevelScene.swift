@@ -22,10 +22,8 @@ import SpriteKit
 
 class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     
-    var pointLabel: SKLabelNode!
     var firstPig: PigSpriteNode!
     var shared: SharedNode!
-    private var gameLevel = 1
     weak var deg: MenuScene?
     
     override init(size: CGSize) {
@@ -39,13 +37,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
         
         // Set ground
 
-        
-        pointLabel = SKLabelNode(fontNamed: "Chalkduster")
-        pointLabel.fontColor = UIColor.redColor()
-        pointLabel.fontSize = 25
-        pointLabel.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - 50.0)
-        self.addChild(pointLabel)
-        
+        self.addChild(shared.pointLabel)
         let firstStone = StoneSpirteNode(imageNamed: "stone_v_1", size: size, posX: self.frame.size.width - 50.0, posY: shared.ground.size.height - 1.0, rotateOnDegree: 0.0)
         self.addChild(firstStone)
         
@@ -66,7 +58,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: NSTimeInterval) {
-        pointLabel.text = "Points: \(PointsCounter.points)"
+        shared.pointLabel.text = "Points: \(PointsCounter.points)"
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -81,7 +73,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
             if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
                 // udostępnij poziom
                 self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
-                Level.unlockLevel(gameLevel)
+                Level.unlockLevel(Level.gameLevel)
             }
         }
         if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Pig) {
@@ -89,7 +81,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
                 // udostępnij poziom
                 
                 self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
-                Level.unlockLevel(gameLevel)
+                Level.unlockLevel(Level.gameLevel)
             }
         }
     }

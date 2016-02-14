@@ -17,6 +17,8 @@ class SharedNode: SKNode {
     var stopButton: SKButtonNode!
     var startButton: SKButtonNode!
     var resetButton: SKButtonNode!
+    var pointLabel: SKLabelNode!
+
 
     
     init(size: CGSize, scene: SKScene) {
@@ -78,32 +80,38 @@ class SharedNode: SKNode {
         resetButton.position = CGPoint(x: 150.0 , y: size.height - 40.0)
         resetButton.zPosition = ObjectZPosition.hud
         self.addChild(resetButton)
+        
+        pointLabel = SKLabelNode(fontNamed: "Chalkduster")
+        pointLabel.fontColor = UIColor.redColor()
+        pointLabel.fontSize = 25
+        pointLabel.position = CGPoint(x: size.width / 2, y: size.height - 50.0)
+        
+
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 }
 
 extension SKScene {
     func backToMenu() {
         print("Tu się pojawi menu gry")
         self.view?.presentScene(MenuScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
-        PointsCounter.enableCounting = false
-        PointsCounter.points = 0
+        PointsCounter.resetPoints()
     }
     
     func nextLevel() {
         print("następny poziom")
         let levelToUnlock = Level.getLevel()
+        PointsCounter.resetPoints()
         switch levelToUnlock {
         case 2:
             self.view?.presentScene(SecondLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
         case 3:
             self.view?.presentScene(ThirdLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
         default:
-            self.view?.presentScene(FirstLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+            self.view?.presentScene(MenuScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
         }
     }
     
@@ -121,8 +129,7 @@ extension SKScene {
     }
     
     func restartGame(numberOfLevel: Int) {
-        PointsCounter.enableCounting = false
-        PointsCounter.points = 0
+        PointsCounter.resetPoints()
         switch numberOfLevel {
         case 1: self.view!.presentScene(FirstLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
         case 2: self.view!.presentScene(SecondLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))

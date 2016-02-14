@@ -22,4 +22,9 @@ class PointsCounter {
         }
         return enableCounting
     }
+    
+    class func resetPoints() {
+        PointsCounter.enableCounting = false
+        PointsCounter.points = 0
+    }
 }
