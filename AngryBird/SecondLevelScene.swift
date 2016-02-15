@@ -68,14 +68,14 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0)
+                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
                 Level.unlockLevel(Level.gameLevel)
             }
         }
         if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyB.node as! PigSpriteNode).destroyPig() {
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
+                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
                 Level.unlockLevel(Level.gameLevel)
             }
         }
