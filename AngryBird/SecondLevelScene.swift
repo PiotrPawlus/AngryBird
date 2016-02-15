@@ -45,8 +45,12 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
         firstPig = PigSpriteNode(imageNamed: "wrog", size: size, posX: self.frame.size.width - 85.0 , posY: sixthStone.position.y - 60.0)
         self.addChild(firstPig)
         
-        
         Level.gameLevel = 2
+        
+        let snowPath = NSBundle.mainBundle().pathForResource("snow", ofType: "sks")
+        let emitter = NSKeyedUnarchiver.unarchiveObjectWithFile(snowPath!)  as! SKNode
+        emitter.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+        self.addChild(emitter)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -61,6 +61,11 @@ class ThirdLevelScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(firstPig)
         
         Level.gameLevel = 3
+        
+        let snowPath = NSBundle.mainBundle().pathForResource("snow", ofType: "sks")
+        let emitter = NSKeyedUnarchiver.unarchiveObjectWithFile(snowPath!)  as! SKNode
+        emitter.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+        self.addChild(emitter)
     }
     
     required init?(coder aDecoder: NSCoder) {
