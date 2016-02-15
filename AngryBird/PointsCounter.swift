@@ -19,14 +19,9 @@ struct PointsCounter {
     
     static func downloadScores() {
         let defaults = NSUserDefaults.standardUserDefaults()
-
-        print("TRZECI PRZED: \(PointsCounter.highScoreThirdLvl)")
-        
         PointsCounter.highScoreFirstLvl = defaults.integerForKey("highScoreFirstLvl")
         PointsCounter.highScoreSecondLvl = defaults.integerForKey("highScoreSecondLvl")
         PointsCounter.highScoreThirdLvl = defaults.integerForKey("highScoreThirdLvl")
-
-        print("TRZECI: \(PointsCounter.highScoreThirdLvl)")
     }
     
     static func addPoint() -> Bool {
