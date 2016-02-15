@@ -15,7 +15,6 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize) {
         super.init(size: size)
-        print("DRUGI POZIOM")
     
         self.physicsWorld.contactDelegate = self
         
@@ -68,15 +67,14 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
         }
         if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
-                // udostępnij poziom
+                PointsCounter.saveHighScore(forLevel: Level.gameLevel)
                 self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
                 Level.unlockLevel(Level.gameLevel)
             }
         }
         if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Pig) {
             if (contact.bodyB.node as! PigSpriteNode).destroyPig() {
-                // udostępnij poziom
-                
+                PointsCounter.saveHighScore(forLevel: Level.gameLevel)
                 self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
                 Level.unlockLevel(Level.gameLevel)
             }
