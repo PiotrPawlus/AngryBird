@@ -18,6 +18,7 @@ class SharedNode: SKNode {
     var startButton: SKButtonNode!
     var resetButton: SKButtonNode!
     var pointLabel: SKLabelNode!
+    var buttonsScale: CGFloat = 0.6
 
 
     
@@ -51,6 +52,7 @@ class SharedNode: SKNode {
             self.delegate?.startGame(self.stopButton)
         })
         startButton.enabled = false
+        startButton.setScale(buttonsScale)
         startButton.position = CGPoint(x: 110.0, y: size.height - 40.0)
         startButton.zPosition = ObjectZPosition.hud
         self.addChild(startButton)
@@ -62,12 +64,14 @@ class SharedNode: SKNode {
             self.delegate?.stopGame(self.startButton)
         })
         stopButton.enabled = true
+        stopButton.setScale(buttonsScale)
         stopButton.position = CGPoint(x: 70.0, y: size.height - 40.0)
         stopButton.zPosition = ObjectZPosition.hud
         self.addChild(stopButton)
     
         menuButton = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: (self.delegate?.backToMenu)!)
         menuButton.enabled = true
+        menuButton.setScale(buttonsScale)
         menuButton.position = CGPoint(x: 30.0 , y: size.height - 40.0)
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
@@ -77,6 +81,7 @@ class SharedNode: SKNode {
         })
 
         resetButton.enabled = true
+        resetButton.setScale(buttonsScale)
         resetButton.position = CGPoint(x: 150.0 , y: size.height - 40.0)
         resetButton.zPosition = ObjectZPosition.hud
         self.addChild(resetButton)

@@ -21,24 +21,24 @@ class MenuScene: SKScene {
         super.init(size: size)
 
         
-        let yPositonOfButtons = self.frame.size.height / 2 - 25.0
+        let yPositonOfButtons = self.frame.size.height / 2 - 10.0
         
         self.addChild(self.setTilteLabel())
-        firstLevelButton = SKButtonNode(defaultButtonImage: "1o", activeButtonImage: "1oc", disabledButtonImage: "1z", buttonAction: goToFirstLevel)
+        firstLevelButton = SKButtonNode(defaultButtonImage: "1oj", activeButtonImage: "1oc", disabledButtonImage: "1z", buttonAction: goToFirstLevel)
         firstLevelButton.enabled = true
-        firstLevelButton.position = CGPointMake(self.frame.width / 2 - 80.0, yPositonOfButtons)
+        firstLevelButton.position = CGPointMake(self.frame.width / 2 - 100.0, yPositonOfButtons)
         self.addChild(firstLevelButton)
         
-        secondLevelButton = SKButtonNode(defaultButtonImage: "2o", activeButtonImage: "2oc", disabledButtonImage: "2z", buttonAction: goToSecondLevel)
+        secondLevelButton = SKButtonNode(defaultButtonImage: "2oj", activeButtonImage: "2oc", disabledButtonImage: "2z", buttonAction: goToSecondLevel)
         secondLevelButton.position = CGPointMake(self.frame.width / 2, yPositonOfButtons)
         self.addChild(secondLevelButton)
         
-        thirdLevelButton = SKButtonNode(defaultButtonImage: "3o", activeButtonImage: "3oc", disabledButtonImage: "3z", buttonAction: goToThirdLevel)
-        thirdLevelButton.position = CGPointMake(self.frame.width / 2 + 80.0, yPositonOfButtons)
+        thirdLevelButton = SKButtonNode(defaultButtonImage: "3oj", activeButtonImage: "3oc", disabledButtonImage: "3z", buttonAction: goToThirdLevel)
+        thirdLevelButton.position = CGPointMake(self.frame.width / 2 + 100.0, yPositonOfButtons)
         self.addChild(thirdLevelButton)
         
-        statsButton = SKButtonNode(defaultButtonImage: "stone_b_2", activeButtonImage: "stone_b_2", disabledButtonImage: "stone_b_2", buttonAction: goToStats)
-        statsButton.position = CGPoint(x: self.frame.width / 2 - 40.0, y: 60.0)
+        statsButton = SKButtonNode(defaultButtonImage: "wynik", activeButtonImage: "wynik_ciemny", disabledButtonImage: "wynik_ciemny", buttonAction: goToStats)
+        statsButton.position = CGPoint(x: self.frame.width / 2 - 50.0, y: 60.0)
         self.addChild(statsButton)
         
         self.unlockLevel(Level.gameLevel)

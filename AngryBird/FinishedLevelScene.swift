@@ -29,7 +29,7 @@ class FinishedLevelScene: SKScene {
         
         let menuButton = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: self.backToMenu)
         menuButton.enabled = true
-        menuButton.position = CGPoint(x: self.frame.size.width / 2 - 30.0, y: self.frame.size.height / 2 - 50.0)
+        menuButton.position = CGPoint(x: self.frame.size.width / 2 - 50.0, y: self.frame.size.height / 2 - 50.0)
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
@@ -38,7 +38,7 @@ class FinishedLevelScene: SKScene {
         
         let nextLevel = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: self.nextLevel)
         nextLevel.enabled = true
-        nextLevel.position = CGPoint(x: self.frame.size.width / 2 + 30.0, y: self.frame.size.height / 2 - 50.0)
+        nextLevel.position = CGPoint(x: self.frame.size.width / 2 + 50.0, y: self.frame.size.height / 2 - 50.0)
         nextLevel.zPosition = ObjectZPosition.hud
         self.addChild(nextLevel)
     }
