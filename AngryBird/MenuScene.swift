@@ -19,30 +19,47 @@ class MenuScene: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
 
+        PointsCounter.downloadScores()
+        
         let yPositonOfButtons = self.frame.size.height / 2 - 50.0
         
         self.addChild(self.setTilteLabel())
         firstLevelButton = SKButtonNode(defaultButtonImage: "1o", activeButtonImage: "1oc", disabledButtonImage: "1z", buttonAction: goToFirstLevel)
         firstLevelButton.enabled = true
         firstLevelButton.position = CGPointMake(self.frame.width / 2 - 80.0, yPositonOfButtons)
-        firstLevelButton.setScale(2.0)
         self.addChild(firstLevelButton)
         
         secondLevelButton = SKButtonNode(defaultButtonImage: "2o", activeButtonImage: "2oc", disabledButtonImage: "2z", buttonAction: goToSecondLevel)
         secondLevelButton.position = CGPointMake(self.frame.width / 2, yPositonOfButtons)
-        secondLevelButton.setScale(2.0)
         self.addChild(secondLevelButton)
         
-        thirdLevelButton = SKButtonNode(defaultButtonImage: "3o", activeButtonImage: "3oc", disabledButtonImage: "3z", buttonAction: goToFirstLevel)
+        thirdLevelButton = SKButtonNode(defaultButtonImage: "3o", activeButtonImage: "3oc", disabledButtonImage: "3z", buttonAction: goToThirdLevel)
         thirdLevelButton.position = CGPointMake(self.frame.width / 2 + 80.0, yPositonOfButtons)
-        thirdLevelButton.setScale(2.0)
         self.addChild(thirdLevelButton)
+        
+        let first = displayHighScoreForLevel(1, y: 130.0)
+        self.addChild(first)
+        
+        let second = displayHighScoreForLevel(2, y: 160.0)
+        self.addChild(second)
+        
+        let third = displayHighScoreForLevel(3, y: 190.0)
+        self.addChild(third)
         
         self.unlockLevel(Level.maxGameLevelReached)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func displayHighScoreForLevel(level: Int, y: CGFloat) -> SKLabelNode {
+        let highScoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        highScoreLabel.fontColor = UIColor.redColor()
+        highScoreLabel.fontSize = 25
+        highScoreLabel.position = CGPoint(x: 100.0, y: self.frame.height - y)
+        highScoreLabel.text = "HighScore \(level): \(PointsCounter.getHighScore(forLevel: level))"
+        return highScoreLabel
     }
 
     // MARK: - Handling Touch
@@ -65,7 +82,6 @@ class MenuScene: SKScene {
     }
     
     func unlockLevel(levelToUnlock: Int) {
-        print("Odblokowuje poziom \(levelToUnlock)")
         switch levelToUnlock {
         case 1:
             secondLevelButton.enabled = false
@@ -84,24 +100,21 @@ class MenuScene: SKScene {
     }
     
     func goToFirstLevel() {
-        print("Poziom 1")
         let reval = SKTransition.fadeWithDuration(0.5)
         let firstLevel = FirstLevelScene(size: self.size)
         self.view!.presentScene(firstLevel, transition: reval)
     }
     
     func goToSecondLevel() {
-        print("Poziom 2")
         let reval = SKTransition.fadeWithDuration(0.5)
         let secondLevel = SecondLevelScene(size: self.size)
         self.view!.presentScene(secondLevel, transition: reval)
     }
     
     func goToThirdLevel() {
-        print("Poziom 3")
         let reval = SKTransition.fadeWithDuration(0.5)
-        let firstLevel = ThirdLevelScene(size: self.size)
-        self.view!.presentScene(firstLevel, transition: reval)
+        let thirdLevel = ThirdLevelScene(size: self.size)
+        self.view!.presentScene(thirdLevel, transition: reval)
     }
 }
 
