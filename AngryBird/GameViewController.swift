@@ -19,11 +19,11 @@ class GameViewController: UIViewController {
         skView.showsDrawCount = true
         skView.showsPhysics = true
         PointsCounter.downloadScores()
-
+        Level.downloadMaxLevel()
+        Level.unlockLevel(0)
         let scene = MenuScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFit
         skView.presentScene(scene)
-        Level.maxGameLevelReached = 1
     }
 
     override func shouldAutorotate() -> Bool {

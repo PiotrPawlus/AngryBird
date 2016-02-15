@@ -10,14 +10,21 @@ import UIKit
 
 struct Level {
     static var gameLevel: Int = 1
-    static var maxGameLevelReached: Int = 1
+    static var countOfLevels: Int = 3
     
-    static func getLevel() -> Int{
-        return self.gameLevel
+    static func unlockLevel(level: Int) {
+        let levelToUnlock = level + 1
+        if (levelToUnlock > Level.gameLevel && levelToUnlock <= Level.countOfLevels) {
+            // podejmij działanie
+            Level.gameLevel = levelToUnlock
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setInteger(Level.gameLevel, forKey: "maxLevel")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
     }
     
-    static func unlockLevel(gameLevel: Int) {
-        self.gameLevel += 1
-        self.maxGameLevelReached += 1
+    static func downloadMaxLevel() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        Level.gameLevel = defaults.integerForKey("maxLevel")
     }
 }

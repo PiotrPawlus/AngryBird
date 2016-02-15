@@ -101,7 +101,7 @@ extension SKScene {
     }
     
     func nextLevel() {
-        let levelToUnlock = Level.getLevel()
+        let levelToUnlock = Level.gameLevel
         PointsCounter.resetPoints()
         switch levelToUnlock {
         case 2:

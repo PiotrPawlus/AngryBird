@@ -17,7 +17,7 @@ class FinishedLevelScene: SKScene {
         finishLabel.fontColor = UIColor.redColor()
         finishLabel.fontSize = 25
         finishLabel.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.height - 50.0)
-        finishLabel.text = "Congratulations of finish \(Level.getLevel()) level!"
+        finishLabel.text = "Congratulations of finish \(Level.gameLevel) level!"
         self.addChild(finishLabel)
         
         let pointsLabel = SKLabelNode(fontNamed: "Chalkduster")
@@ -33,7 +33,7 @@ class FinishedLevelScene: SKScene {
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
-        let highScoreLabel = displayHighScoreForLevel(Level.getLevel())
+        let highScoreLabel = displayHighScoreForLevel(Level.gameLevel)
         self.addChild(highScoreLabel)
         
         let nextLevel = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: self.nextLevel)

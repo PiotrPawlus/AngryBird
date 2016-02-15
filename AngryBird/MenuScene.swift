@@ -45,7 +45,10 @@ class MenuScene: SKScene {
         let third = displayHighScoreForLevel(3, y: 190.0)
         self.addChild(third)
         
-        self.unlockLevel(Level.maxGameLevelReached)
+        let level = dipslayMaxLevel()
+        self.addChild(level)
+        
+        self.unlockLevel(Level.gameLevel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +61,15 @@ class MenuScene: SKScene {
         highScoreLabel.fontSize = 25
         highScoreLabel.position = CGPoint(x: 100.0, y: self.frame.height - y)
         highScoreLabel.text = "HighScore \(level): \(PointsCounter.getHighScore(forLevel: level))"
+        return highScoreLabel
+    }
+    
+    func dipslayMaxLevel() -> SKLabelNode {
+        let highScoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        highScoreLabel.fontColor = UIColor.redColor()
+        highScoreLabel.fontSize = 20
+        highScoreLabel.position = CGPoint(x: 100.0, y: self.frame.height - 100.0)
+        highScoreLabel.text = "Levels unlocked: \(Level.gameLevel)"
         return highScoreLabel
     }
 
@@ -82,6 +94,10 @@ class MenuScene: SKScene {
     
     func unlockLevel(levelToUnlock: Int) {
         switch levelToUnlock {
+        case 0:
+            firstLevelButton.enabled = false
+            secondLevelButton.enabled = false
+            thirdLevelButton.enabled = false
         case 1:
             secondLevelButton.enabled = false
             thirdLevelButton.enabled = false
