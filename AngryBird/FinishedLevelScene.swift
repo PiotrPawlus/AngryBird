@@ -9,6 +9,7 @@
 import SpriteKit
 
 class FinishedLevelScene: SKScene {
+   
     override init(size: CGSize) {
         super.init(size: size)
         
@@ -32,6 +33,9 @@ class FinishedLevelScene: SKScene {
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
+        let highScoreLabel = displayHighScoreForLevel(Level.getLevel())
+        self.addChild(highScoreLabel)
+        
         let nextLevel = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: self.nextLevel)
         nextLevel.enabled = true
         nextLevel.position = CGPoint(x: self.frame.size.width / 2 + 30.0, y: self.frame.size.height / 2 - 50.0)
@@ -43,5 +47,12 @@ class FinishedLevelScene: SKScene {
         super.init(coder: aDecoder)
     }
     
-
+    func displayHighScoreForLevel(level: Int) -> SKLabelNode {
+        let highScoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        highScoreLabel.fontColor = UIColor.redColor()
+        highScoreLabel.fontSize = 25
+        highScoreLabel.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.height - 130.0)
+        highScoreLabel.text = "HighScore: \(PointsCounter.getHighScore(forLevel: level))"
+        return highScoreLabel
+    }
 }
