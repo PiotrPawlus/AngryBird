@@ -37,14 +37,11 @@ class BirdSpriteNode: SKSpriteNode {
         super.init(texture: texture, color: UIColor.clearColor(), size: birdSize)
         self.position = CGPoint(x: 100.0, y: size.height / 2 - 30.0)
         self.zPosition = ObjectZPosition.middleground
-//        self.physicsBody = SKPhysicsBody(circleOfRadius: birdSize.width * 0.2 / 2)
         self.physicsBody = SKPhysicsBody(circleOfRadius: birdSize.width / 2)
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.mass = 0.07
-        // !!!
-        print("BIRD MASS: \(self.physicsBody?.mass)")
         self.userInteractionEnabled = true
     }
     

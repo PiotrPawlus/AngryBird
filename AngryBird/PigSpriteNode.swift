@@ -31,8 +31,6 @@ class PigSpriteNode: SKSpriteNode {
         
         self.physicsBody?.collisionBitMask = CollisionCategoryBitmask.Pig
         self.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Pig
-
-        // !!!
         self.userInteractionEnabled = false
     }
     

@@ -37,7 +37,6 @@ class StoneSpirteNode: SKSpriteNode {
         let radius = angle * π / 180
         let rotateBy = SKAction.rotateByAngle(radius, duration: 0.0)
         self.runAction(rotateBy)
-        // !!!
         self.userInteractionEnabled = false
     }
     

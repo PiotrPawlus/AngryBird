@@ -96,13 +96,11 @@ class SharedNode: SKNode {
 
 extension SKScene {
     func backToMenu() {
-        print("Tu się pojawi menu gry")
         self.view?.presentScene(MenuScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
         PointsCounter.resetPoints()
     }
     
     func nextLevel() {
-        print("następny poziom")
         let levelToUnlock = Level.getLevel()
         PointsCounter.resetPoints()
         switch levelToUnlock {
@@ -116,14 +114,12 @@ extension SKScene {
     }
     
     func stopGame(startButton: SKButtonNode)  {
-        print("Game stoped")
         self.view?.paused = true
         startButton.paused = false
         
     }
     
     func startGame(stopButon: SKButtonNode) {
-        print("Start game")
         self.view?.paused = false
         stopButon.enabled = true
     }
