@@ -71,7 +71,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
             if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
                 // udostępnij poziom
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
                 Level.unlockLevel(Level.gameLevel)
             }
         }
@@ -79,7 +79,7 @@ class FirstLevelScene: SKScene, SKPhysicsContactDelegate {
             if (contact.bodyB.node as! PigSpriteNode).destroyPig() {
                 // udostępnij poziom
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
+                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
                 Level.unlockLevel(Level.gameLevel)
             }
         }
