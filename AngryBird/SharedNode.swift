@@ -27,6 +27,7 @@ class SharedNode: SKNode {
     var winningNode: SKSpriteNode!
     var bigMenu: SKButtonNode!
     var bigNextLevel: SKButtonNode!
+    var bigRestart: SKButtonNode!
     var highScoreLabel: SKLabelNode!
     
     init(size: CGSize, scene: SKScene) {
@@ -60,7 +61,7 @@ class SharedNode: SKNode {
         })
         startButton.enabled = false
         startButton.setScale(buttonsScale)
-        startButton.position = CGPoint(x: 110.0, y: size.height - 40.0)
+        startButton.position = CGPoint(x: 110.0, y: size.height - (size.height * 1/10))
         startButton.zPosition = ObjectZPosition.hud
         self.addChild(startButton)
         
@@ -72,14 +73,14 @@ class SharedNode: SKNode {
         })
         stopButton.enabled = true
         stopButton.setScale(buttonsScale)
-        stopButton.position = CGPoint(x: 70.0, y: size.height - 40.0)
+        stopButton.position = CGPoint(x: 70.0, y: size.height - (size.height * 1/10))
         stopButton.zPosition = ObjectZPosition.hud
         self.addChild(stopButton)
     
         menuButton = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: (self.delegate?.backToMenu)!)
         menuButton.enabled = true
         menuButton.setScale(buttonsScale)
-        menuButton.position = CGPoint(x: 30.0 , y: size.height - 40.0)
+        menuButton.position = CGPoint(x: 30.0 , y: size.height - (size.height * 1/10))
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
@@ -89,7 +90,7 @@ class SharedNode: SKNode {
 
         resetButton.enabled = true
         resetButton.setScale(buttonsScale)
-        resetButton.position = CGPoint(x: 150.0 , y: size.height - 40.0)
+        resetButton.position = CGPoint(x: 150.0 , y: size.height - (size.height * 1/10))
         resetButton.zPosition = ObjectZPosition.hud
         self.addChild(resetButton)
         
@@ -117,6 +118,8 @@ class SharedNode: SKNode {
         self.addChild(bigMenu)
         bigNextLevel = self.setBigNextLevel()
         self.addChild(bigNextLevel)
+        bigRestart = self.setBigRestart()
+        self.addChild(bigRestart)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -144,6 +147,7 @@ class SharedNode: SKNode {
         bigMenu.hidden = false
         bigNextLevel.hidden = false
         highScoreLabel.hidden = false
+        bigRestart.hidden = false
         print(bigMenu.position)
     }
     
@@ -158,7 +162,7 @@ class SharedNode: SKNode {
     func setBigMenu() -> SKButtonNode {
         let button = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: (self.delegate?.backToMenu)!)
         button.enabled = true
-        button.position = CGPoint(x: self.size.width / 2 - 50.0, y: self.size.height - (self.size.height * 7/10))
+        button.position = CGPoint(x: self.size.width / 2 - 80.0, y: self.size.height - (self.size.height * 7/10))
         button.zPosition = 5.0
         button.hidden = true
         return button
@@ -167,7 +171,18 @@ class SharedNode: SKNode {
     func setBigNextLevel() -> SKButtonNode {
         let button = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: (self.delegate?.nextLevel)!)
         button.enabled = true
-        button.position = CGPoint(x: self.size.width / 2 + 50.0, y: self.size.height - (self.size.height * 7/10))
+        button.position = CGPoint(x: self.size.width / 2 + 80.0, y: self.size.height - (self.size.height * 7/10))
+        button.zPosition = ObjectZPosition.hud
+        button.hidden = true
+        return button
+    }
+    
+    func setBigRestart() -> SKButtonNode {
+        let button = SKButtonNode(defaultButtonImage: "restart", activeButtonImage: "restart", disabledButtonImage: "restart", buttonAction: {
+            self.delegate?.restartGame(Level.gameLevel)
+        })
+        button.enabled = true
+        button.position = CGPoint(x: self.size.width / 2, y: self.size.height - (self.size.height * 7/10))
         button.zPosition = ObjectZPosition.hud
         button.hidden = true
         return button
@@ -196,7 +211,6 @@ class SharedNode: SKNode {
             if body.destroyPig() {
                 self.runWiningNode(Level.gameLevel)
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-//                self.delegate?.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
                 Level.unlockLevel(Level.gameLevel)
             }
         }
