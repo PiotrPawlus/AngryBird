@@ -20,6 +20,7 @@ class MenuScene: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
 
+        Level.downloadMaxLevel()
         
         let yPositonOfButtons = self.frame.size.height / 2 - 10.0
         
