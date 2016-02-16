@@ -68,7 +68,7 @@ class MenuScene: SKScene {
         titleLabel.text = "Angry Bird"
         titleLabel.fontSize = 26
         titleLabel.fontColor = UIColor.whiteColor()
-        titleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - (self.frame.height * 2/10))
+        titleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - (self.frame.height * 1/5))
         return titleLabel
     }
     
