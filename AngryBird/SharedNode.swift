@@ -245,12 +245,13 @@ extension SKScene {
     func stopGame(startButton: SKButtonNode)  {
         self.view?.paused = true
         startButton.paused = false
-        
+        MusicPlayer.myPlayer()?.pause()
     }
     
     func startGame(stopButon: SKButtonNode) {
         self.view?.paused = false
         stopButon.enabled = true
+        MusicPlayer.myPlayer()?.play()
     }
     
     func restartGame(numberOfLevel: Int) {

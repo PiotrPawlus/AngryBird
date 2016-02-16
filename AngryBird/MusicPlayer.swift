@@ -42,6 +42,10 @@ class MusicPlayer: NSObject {
         self.backgroundPlayer?.currentTime = 0
     }
     
+    func pause() {
+        self.backgroundPlayer?.stop()
+    }
+    
     func silent() {
         self.backgroundPlayer?.volume = 0.5
     }
