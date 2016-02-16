@@ -72,22 +72,25 @@ class ThirdLevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Stone) {
-            (contact.bodyA.node as! StoneSpirteNode).takeHP()
+        var bodyA: SKPhysicsBody
+        var bodyB: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            bodyA = contact.bodyA
+            bodyB = contact.bodyB
+        } else {
+            bodyA = contact.bodyB
+            bodyB = contact.bodyA
         }
-        if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Stone) {
-            (contact.bodyB.node as! StoneSpirteNode).takeHP()
-            
+        
+        if bodyA.categoryBitMask == CollisionCategoryBitmask.Stone || bodyB.categoryBitMask == CollisionCategoryBitmask.Stone {
+            let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Stone) ? (bodyA.node as! StoneSpirteNode) : (bodyB.node as! StoneSpirteNode)
+            body.takeHP()
         }
-        if (contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) {
-            if (contact.bodyA.node as! PigSpriteNode).destroyPig() {
-                PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
-                Level.unlockLevel(Level.gameLevel)
-            }
-        }
-        if (contact.bodyB.categoryBitMask == CollisionCategoryBitmask.Pig) {
-            if (contact.bodyB.node as! PigSpriteNode).destroyPig() {
+        
+        if bodyA.categoryBitMask == CollisionCategoryBitmask.Pig || bodyB.categoryBitMask == CollisionCategoryBitmask.Pig {
+            let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) ? (bodyA.node as! PigSpriteNode) : (bodyB.node as! PigSpriteNode)
+            if body.destroyPig() {
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
                 self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
                 Level.unlockLevel(Level.gameLevel)
