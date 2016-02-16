@@ -27,6 +27,12 @@
 		C11880E51C6F5127005202DB /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11880E41C6F5127005202DB /* Level.swift */; };
 		C11880EC1C6FDB9D005202DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11880EB1C6FDB9D005202DB /* Assets.xcassets */; };
 		C1380C561C72299E00D8EEC1 /* StatsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1380C551C72299E00D8EEC1 /* StatsScene.swift */; };
+		C1380C5C1C736EF800D8EEC1 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1380C5B1C736EF800D8EEC1 /* MusicPlayer.swift */; };
+		C1380C5F1C7374B800D8EEC1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1380C5E1C7374B800D8EEC1 /* AVFoundation.framework */; };
+		C1380C681C73774500D8EEC1 /* bad.aif in Resources */ = {isa = PBXBuildFile; fileRef = C1380C641C73774500D8EEC1 /* bad.aif */; };
+		C1380C691C73774500D8EEC1 /* door.aif in Resources */ = {isa = PBXBuildFile; fileRef = C1380C651C73774500D8EEC1 /* door.aif */; };
+		C1380C6A1C73774500D8EEC1 /* dzwiek.aif in Resources */ = {isa = PBXBuildFile; fileRef = C1380C661C73774500D8EEC1 /* dzwiek.aif */; };
+		C1380C6B1C73774500D8EEC1 /* eat.aif in Resources */ = {isa = PBXBuildFile; fileRef = C1380C671C73774500D8EEC1 /* eat.aif */; };
 		C1E36C741C6DC289009D1215 /* SharedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C731C6DC289009D1215 /* SharedNode.swift */; };
 		C1E36C761C6DC422009D1215 /* ObjectZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +60,12 @@
 		C11880E41C6F5127005202DB /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		C11880EB1C6FDB9D005202DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1380C551C72299E00D8EEC1 /* StatsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsScene.swift; sourceTree = "<group>"; };
+		C1380C5B1C736EF800D8EEC1 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		C1380C5E1C7374B800D8EEC1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C1380C641C73774500D8EEC1 /* bad.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = bad.aif; sourceTree = "<group>"; };
+		C1380C651C73774500D8EEC1 /* door.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = door.aif; sourceTree = "<group>"; };
+		C1380C661C73774500D8EEC1 /* dzwiek.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = dzwiek.aif; sourceTree = "<group>"; };
+		C1380C671C73774500D8EEC1 /* eat.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = eat.aif; sourceTree = "<group>"; };
 		C1E36C731C6DC289009D1215 /* SharedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedNode.swift; sourceTree = "<group>"; };
 		C1E36C751C6DC422009D1215 /* ObjectZPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectZPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1380C5F1C7374B800D8EEC1 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +85,7 @@
 		C10D815A1C6CF0E80094F40F = {
 			isa = PBXGroup;
 			children = (
+				C1380C5E1C7374B800D8EEC1 /* AVFoundation.framework */,
 				C10D81651C6CF0E80094F40F /* AngryBird */,
 				C10D81641C6CF0E80094F40F /* Products */,
 			);
@@ -97,12 +111,11 @@
 				C11880E61C6F5BE0005202DB /* Nodes */,
 				C10D818E1C6D27030094F40F /* Scenes */,
 				C10D81801C6CFD9A0094F40F /* SKButtonNode.swift */,
+				C1380C5B1C736EF800D8EEC1 /* MusicPlayer.swift */,
 				C10D816E1C6CF0E80094F40F /* Main.storyboard */,
-				C11880E01C6E6561005202DB /* snow.sks */,
-				C11880E11C6E6561005202DB /* spark.png */,
+				C1380C5D1C73741D00D8EEC1 /* Supporting Files */,
 				C11880EB1C6FDB9D005202DB /* Assets.xcassets */,
 				C10D81731C6CF0E80094F40F /* LaunchScreen.storyboard */,
-				C10D81761C6CF0E80094F40F /* Info.plist */,
 			);
 			path = AngryBird;
 			sourceTree = "<group>";
@@ -129,6 +142,20 @@
 				C11880DC1C6E0CEE005202DB /* PigSpriteNode.swift */,
 			);
 			name = Nodes;
+			sourceTree = "<group>";
+		};
+		C1380C5D1C73741D00D8EEC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1380C641C73774500D8EEC1 /* bad.aif */,
+				C1380C651C73774500D8EEC1 /* door.aif */,
+				C1380C661C73774500D8EEC1 /* dzwiek.aif */,
+				C1380C671C73774500D8EEC1 /* eat.aif */,
+				C11880E01C6E6561005202DB /* snow.sks */,
+				C11880E11C6E6561005202DB /* spark.png */,
+				C10D81761C6CF0E80094F40F /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,10 +216,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1380C6B1C73774500D8EEC1 /* eat.aif in Resources */,
+				C1380C681C73774500D8EEC1 /* bad.aif in Resources */,
 				C11880EC1C6FDB9D005202DB /* Assets.xcassets in Resources */,
+				C1380C691C73774500D8EEC1 /* door.aif in Resources */,
 				C11880E31C6E6561005202DB /* spark.png in Resources */,
 				C10D81751C6CF0E80094F40F /* LaunchScreen.storyboard in Resources */,
 				C11880E21C6E6561005202DB /* snow.sks in Resources */,
+				C1380C6A1C73774500D8EEC1 /* dzwiek.aif in Resources */,
 				C10D81701C6CF0E80094F40F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +237,7 @@
 			files = (
 				C11880E51C6F5127005202DB /* Level.swift in Sources */,
 				C10D81811C6CFD9A0094F40F /* SKButtonNode.swift in Sources */,
+				C1380C5C1C736EF800D8EEC1 /* MusicPlayer.swift in Sources */,
 				C10D81871C6D21110094F40F /* BackgroundSpriteNode.swift in Sources */,
 				C10D817D1C6CF2100094F40F /* MenuScene.swift in Sources */,
 				C10D818B1C6D24020094F40F /* ThirdLevelScene.swift in Sources */,
