@@ -17,7 +17,6 @@ class MusicPlayer: NSObject {
     
     override init() {
         let pathToFile = NSBundle.mainBundle().pathForResource("dzwiek", ofType: "aif")
-        print(pathToFile)
         if pathToFile != nil {
             self.backgroundPlayer = try! AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: pathToFile! ))
         }

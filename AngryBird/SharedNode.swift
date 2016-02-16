@@ -151,7 +151,6 @@ class SharedNode: SKNode {
         bigNextLevel.hidden = false
         highScoreLabel.hidden = false
         bigRestart.hidden = false
-        print(bigMenu.position)
     }
     
     func setWinningNode() -> SKSpriteNode {
