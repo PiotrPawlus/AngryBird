@@ -19,6 +19,10 @@ class StatsScene: SKScene {
         background.zPosition = ObjectZPosition.background
         self.addChild(background)
         
+        let ground = SKSpriteNode(imageNamed: "ground")
+        ground.position = CGPoint(x: 0, y: 0)
+        ground.zPosition = ObjectZPosition.middleground
+        self.addChild(ground)
 
         let menuButton = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: self.backToMenu)
         menuButton.enabled = true
@@ -36,10 +40,32 @@ class StatsScene: SKScene {
         
         let level = dipslayMaxLevel()
         self.addChild(level)
+        
+        do {
+            try addSnowEmiter()
+        } catch {
+            if let error = error as? EmiterError {
+                switch error {
+                case .WrongPath:
+                    print("Wrong path to the emitter file")
+                    print("Error massage: \(error)")
+                }
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func addSnowEmiter() throws {
+        let snowPath = NSBundle.mainBundle().pathForResource("snow", ofType: "sks")
+        if snowPath == nil {
+            throw EmiterError.WrongPath
+        }
+        let emitter = NSKeyedUnarchiver.unarchiveObjectWithFile(snowPath!) as! SKNode
+        emitter.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+        self.addChild(emitter)
     }
     
     func displayHighScoreForLevel(level: Int, y: CGFloat) -> SKLabelNode {
