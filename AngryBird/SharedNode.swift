@@ -115,8 +115,6 @@ class SharedNode: SKNode {
         
         winningNode  = self.setWinningNode()
         self.addChild(winningNode)
-        highScoreLabel = self.highScoreForLevel()
-        self.addChild(highScoreLabel)
         bigMenu = self.setBigMenu()
         self.addChild(bigMenu)
         bigNextLevel = self.setBigNextLevel()
@@ -149,7 +147,11 @@ class SharedNode: SKNode {
         winningNode.hidden = false
         bigMenu.hidden = false
         bigNextLevel.hidden = false
-        highScoreLabel.hidden = false
+        if PointsCounter.points < PointsCounter.getHighScore(forLevel: Level.gameLevel) {
+            highScoreLabel = self.highScoreForLevel()
+            self.addChild(highScoreLabel)
+            highScoreLabel.hidden = false
+        }
         bigRestart.hidden = false
     }
     
@@ -211,6 +213,7 @@ class SharedNode: SKNode {
         if bodyA.categoryBitMask == CollisionCategoryBitmask.Pig || bodyB.categoryBitMask == CollisionCategoryBitmask.Pig {
             let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) ? (bodyA.node as! PigSpriteNode) : (bodyB.node as! PigSpriteNode)
             if body.destroyPig() {
+                PointsCounter.enableCounting = false
                 self.runWiningNode(Level.gameLevel)
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
                 Level.unlockLevel(Level.gameLevel)
