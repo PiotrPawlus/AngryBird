@@ -18,9 +18,13 @@ class GameViewController: UIViewController {
         skView.showsFPS = true
         skView.showsDrawCount = true
         skView.showsPhysics = true
+        
         PointsCounter.downloadScores()
         Level.downloadMaxLevel()
         Level.unlockLevel(0)
+        
+        MusicPlayer.myPlayer()?.play()
+        
         let scene = MenuScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFit
         skView.presentScene(scene)
