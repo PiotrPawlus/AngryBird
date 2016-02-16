@@ -35,6 +35,8 @@ class SharedNode: SKNode {
 
         self.delegate = scene
         self.size = size
+        
+        MusicPlayer.myPlayer()?.silent()
 
         let background = BackgroundSpriteNode(imageNamed: "background", size: size)
         background.zPosition = ObjectZPosition.background
