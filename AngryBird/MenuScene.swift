@@ -16,11 +16,15 @@ class MenuScene: SKScene {
     private var thirdLevelButton: SKButtonNode!
     private var statsButton: SKButtonNode!
     private var background: SKSpriteNode!
+    private var stopMusicButton: SKButtonNode!
+    private var startMusicButton: SKButtonNode!
     
     override init(size: CGSize) {
         super.init(size: size)
+        
 
         Level.downloadMaxLevel()
+        MusicPlayer.myPlayer()?.loud()
         
         let background = BackgroundSpriteNode(imageNamed: "background", size: size)
         background.zPosition = ObjectZPosition.background
@@ -42,7 +46,7 @@ class MenuScene: SKScene {
         self.addChild(firstLevelButton)
         
         secondLevelButton = SKButtonNode(defaultButtonImage: "2oj", activeButtonImage: "2oc", disabledButtonImage: "2z", buttonAction: goToSecondLevel)
-        secondLevelButton.position = CGPointMake(self.frame.width / 2, yPositonOfButtons)
+        secondLevelButton.position = CGPointMake(self.frame.midX, yPositonOfButtons)
         secondLevelButton.zPosition = ObjectZPosition.hud
         self.addChild(secondLevelButton)
         
@@ -52,12 +56,11 @@ class MenuScene: SKScene {
         self.addChild(thirdLevelButton)
         
         statsButton = SKButtonNode(defaultButtonImage: "wynik", activeButtonImage: "wynik_ciemny", disabledButtonImage: "wynik_ciemny", buttonAction: goToStats)
-        statsButton.position = CGPoint(x: self.frame.width / 2 - 50.0, y: self.frame.height - (self.frame.height * 7/10))
+        statsButton.position = CGPoint(x: self.frame.midX, y: self.frame.height - (self.frame.height * 7/10))
         statsButton.zPosition = ObjectZPosition.hud
         self.addChild(statsButton)
         
         self.unlockLevel(Level.gameLevel)
-        
         
         
         do {
@@ -71,6 +74,13 @@ class MenuScene: SKScene {
                 }
             }
         }
+        
+        startMusicButton = setMusicButtons().0
+        self.addChild(startMusicButton)
+        stopMusicButton = setMusicButtons().1
+        self.addChild(stopMusicButton)
+        
+        self.hideMusicButtons(hideStop: MusicPlayer.musicStoped)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,6 +97,40 @@ class MenuScene: SKScene {
     }
     
     // MRAK: - Functions
+    func setMusicButtons() -> (SKButtonNode, SKButtonNode) {
+        let startMusic = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: {
+            self.hideMusicButtons(hideStop: false)
+            MusicPlayer.myPlayer()?.play()
+        })
+        startMusic.hidden = true
+        startMusic.setScale(0.6)
+        startMusic.position = CGPoint(x: self.frame.maxX - (self.frame.maxX * 1/16), y: size.height - (size.height * 1/10))
+        startMusic.zPosition = ObjectZPosition.hud
+        
+        let stopMusic = SKButtonNode(defaultButtonImage: "pauza", activeButtonImage: "pauza", disabledButtonImage: "pauza", buttonAction: {
+            self.hideMusicButtons(hideStop: true)
+            MusicPlayer.myPlayer()?.stop()
+        })
+        stopMusic.hidden = false
+        stopMusic.setScale(0.6)
+        stopMusic.position = CGPoint(x: self.frame.maxX - (self.frame.maxX * 1/16), y: size.height - (size.height * 1/10))
+        stopMusic.zPosition = ObjectZPosition.hud
+        
+        return (startMusic, stopMusic)
+    }
+    
+    func hideMusicButtons(hideStop hideStop: Bool) {
+        if hideStop {
+            stopMusicButton.hidden = true
+            startMusicButton.hidden = false
+        } else {
+            startMusicButton.hidden = true
+            stopMusicButton.hidden = false
+        }
+
+    }
+    
+    
     func setTilteLabel() -> SKLabelNode {
         let titleLabel = SKLabelNode(fontNamed:"Chalkduster")
         titleLabel.text = "Angry Bird"
