@@ -86,9 +86,7 @@ class SharedNode: SKNode {
         menuButton.zPosition = ObjectZPosition.hud
         self.addChild(menuButton)
         
-        resetButton = SKButtonNode(defaultButtonImage: "restart", activeButtonImage: "restart", disabledButtonImage: "restart", buttonAction:  { () -> Void in
-            self.delegate?.restartGame(Level.gameLevel)
-        })
+        resetButton = SKButtonNode(defaultButtonImage: "restart", activeButtonImage: "restart", disabledButtonImage: "restart", buttonAction: (self.delegate?.restartGame)!)
 
         resetButton.enabled = true
         resetButton.setScale(buttonsScale)
@@ -182,9 +180,12 @@ class SharedNode: SKNode {
     }
     
     func setBigRestart() -> SKButtonNode {
-        let button = SKButtonNode(defaultButtonImage: "restart", activeButtonImage: "restart", disabledButtonImage: "restart", buttonAction: {
-            self.delegate?.restartGame(Level.gameLevel)
-        })
+        let button = SKButtonNode(defaultButtonImage: "restart", activeButtonImage: "restart", disabledButtonImage: "restart") { () -> Void in
+            if Level.gameLevel < Level.countOfLevels {
+                Level.gameLevel -= 1
+            }
+            self.delegate?.restartGame()
+        }
         button.enabled = true
         button.position = CGPoint(x: self.size.width / 2, y: self.size.height - (self.size.height * 7/10))
         button.zPosition = ObjectZPosition.hud
@@ -213,8 +214,8 @@ class SharedNode: SKNode {
         if bodyA.categoryBitMask == CollisionCategoryBitmask.Pig || bodyB.categoryBitMask == CollisionCategoryBitmask.Pig {
             let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) ? (bodyA.node as! PigSpriteNode) : (bodyB.node as! PigSpriteNode)
             if body.destroyPig() {
-                PointsCounter.enableCounting = false
                 self.runWiningNode(Level.gameLevel)
+                PointsCounter.enableCounting = false
                 PointsCounter.saveHighScore(forLevel: Level.gameLevel)
                 Level.unlockLevel(Level.gameLevel)
             }
@@ -257,11 +258,12 @@ extension SKScene {
         MusicPlayer.myPlayer()?.play()
     }
     
-    func restartGame(numberOfLevel: Int) {
+    func restartGame() {
         defer {
             PointsCounter.resetPoints()
         }
-        switch numberOfLevel {
+        print(Level.gameLevel)
+        switch Level.gameLevel {
         case 1: self.view!.presentScene(FirstLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
         case 2: self.view!.presentScene(SecondLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
         case 3: self.view!.presentScene(ThirdLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
