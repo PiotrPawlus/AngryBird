@@ -68,19 +68,7 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
             bodyB = contact.bodyA
         }
         
-        if bodyA.categoryBitMask == CollisionCategoryBitmask.Stone || bodyB.categoryBitMask == CollisionCategoryBitmask.Stone {
-            let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Stone) ? (bodyA.node as! StoneSpirteNode) : (bodyB.node as! StoneSpirteNode)
-            body.takeHP()
-        }
-        
-        if bodyA.categoryBitMask == CollisionCategoryBitmask.Pig || bodyB.categoryBitMask == CollisionCategoryBitmask.Pig {
-            let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) ? (bodyA.node as! PigSpriteNode) : (bodyB.node as! PigSpriteNode)
-            if body.destroyPig() {
-                PointsCounter.saveHighScore(forLevel: Level.gameLevel)
-                self.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
-                Level.unlockLevel(Level.gameLevel)
-            }
-        }
+        shared.contactBegin(bodyA, bodyB)
     }
 
 }

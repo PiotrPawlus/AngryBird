@@ -24,14 +24,17 @@ class SharedNode: SKNode {
     var pointLabel: SKLabelNode!
     var buttonsScale: CGFloat = 0.6
 
-
+    var winningNode: SKSpriteNode!
+    var bigMenu: SKButtonNode!
+    var bigNextLevel: SKButtonNode!
+    var highScoreLabel: SKLabelNode!
     
     init(size: CGSize, scene: SKScene) {
         super.init()
 
         self.delegate = scene
         self.size = size
-        // Set background
+
         let background = BackgroundSpriteNode(imageNamed: "background", size: size)
         background.zPosition = ObjectZPosition.background
         self.addChild(background)
@@ -93,7 +96,7 @@ class SharedNode: SKNode {
         pointLabel = SKLabelNode(fontNamed: "Chalkduster")
         pointLabel.fontColor = UIColor.redColor()
         pointLabel.fontSize = 25
-        pointLabel.position = CGPoint(x: size.width / 2, y: size.height - 50.0)
+        pointLabel.position = CGPoint(x: size.width / 2, y: size.height - (size.height * 1/10))
         
         do {
             try addSnowEmiter()
@@ -106,7 +109,14 @@ class SharedNode: SKNode {
                 }
             }
         }
-
+        winningNode  = self.setWinningNode()
+        self.addChild(winningNode)
+        highScoreLabel = self.highScoreForLevel()
+        self.addChild(highScoreLabel)
+        bigMenu = self.setBigMenu()
+        self.addChild(bigMenu)
+        bigNextLevel = self.setBigNextLevel()
+        self.addChild(bigNextLevel)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -123,17 +133,89 @@ class SharedNode: SKNode {
         emitter.position = CGPoint(x: self.size.width / 2, y: self.size.height)
         self.addChild(emitter)
     }
+    
+    
+    func runWiningNode(level: Int) {
+        menuButton.hidden = true
+        stopButton.hidden = true
+        startButton.hidden = true
+        resetButton.hidden = true
+        winningNode.hidden = false
+        bigMenu.hidden = false
+        bigNextLevel.hidden = false
+        highScoreLabel.hidden = false
+        print(bigMenu.position)
+    }
+    
+    func setWinningNode() -> SKSpriteNode {
+        let node = SKSpriteNode(imageNamed: "zwyciestwo")
+        node.position = CGPointMake(self.size.width / 2, self.size.height - (self.size.height * 2/5))
+        node.zPosition = ObjectZPosition.hud
+        node.hidden = true
+        return node
+    }
+    
+    func setBigMenu() -> SKButtonNode {
+        let button = SKButtonNode(defaultButtonImage: "menu", activeButtonImage: "menu", disabledButtonImage: "menu", buttonAction: (self.delegate?.backToMenu)!)
+        button.enabled = true
+        button.position = CGPoint(x: self.size.width / 2 - 50.0, y: self.size.height - (self.size.height * 7/10))
+        button.zPosition = 5.0
+        button.hidden = true
+        return button
+    }
+    
+    func setBigNextLevel() -> SKButtonNode {
+        let button = SKButtonNode(defaultButtonImage: "start", activeButtonImage: "start", disabledButtonImage: "start", buttonAction: (self.delegate?.nextLevel)!)
+        button.enabled = true
+        button.position = CGPoint(x: self.size.width / 2 + 50.0, y: self.size.height - (self.size.height * 7/10))
+        button.zPosition = ObjectZPosition.hud
+        button.hidden = true
+        return button
+    }
+    
+    func highScoreForLevel() -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        label.fontColor = UIColor.redColor()
+        label.fontSize = 25
+        label.position = CGPoint(x: self.size.width / 2, y: self.size.height - (self.size.height * 1/5))
+        label.zPosition = ObjectZPosition.hud
+        label.text = "HighScore: \(PointsCounter.getHighScore(forLevel: Level.gameLevel))"
+        label.hidden = true
+        return label
+    }
+    
+    
+    func contactBegin(bodyA: SKPhysicsBody, _ bodyB: SKPhysicsBody) {
+        if bodyA.categoryBitMask == CollisionCategoryBitmask.Stone || bodyB.categoryBitMask == CollisionCategoryBitmask.Stone {
+            let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Stone) ? (bodyA.node as! StoneSpirteNode) : (bodyB.node as! StoneSpirteNode)
+            body.takeHP()
+        }
+        
+        if bodyA.categoryBitMask == CollisionCategoryBitmask.Pig || bodyB.categoryBitMask == CollisionCategoryBitmask.Pig {
+            let body = (bodyA.categoryBitMask == CollisionCategoryBitmask.Pig) ? (bodyA.node as! PigSpriteNode) : (bodyB.node as! PigSpriteNode)
+            if body.destroyPig() {
+                self.runWiningNode(Level.gameLevel)
+                PointsCounter.saveHighScore(forLevel: Level.gameLevel)
+//                self.delegate?.view?.presentScene(FinishedLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(1.0))
+                Level.unlockLevel(Level.gameLevel)
+            }
+        }
+    }
 }
 
 extension SKScene {
     func backToMenu() {
+        defer {
+            PointsCounter.resetPoints()
+        }
         self.view?.presentScene(MenuScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
-        PointsCounter.resetPoints()
     }
     
     func nextLevel() {
+        defer {
+            PointsCounter.resetPoints()
+        }
         let levelToUnlock = Level.gameLevel
-        PointsCounter.resetPoints()
         switch levelToUnlock {
         case 2:
             self.view?.presentScene(SecondLevelScene(size: self.size), transition: SKTransition.fadeWithDuration(0.5))
@@ -156,7 +238,9 @@ extension SKScene {
     }
     
     func restartGame(numberOfLevel: Int) {
-        PointsCounter.resetPoints()
+        defer {
+            PointsCounter.resetPoints()
+        }
         switch numberOfLevel {
         case 1: self.view!.presentScene(FirstLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
         case 2: self.view!.presentScene(SecondLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
@@ -164,4 +248,5 @@ extension SKScene {
         default: self.view!.presentScene(FirstLevelScene(size: size), transition: SKTransition.fadeWithDuration(0.5))
         }
     }
+    
 }
