@@ -42,10 +42,10 @@ class StoneSpirteNode: SKSpriteNode {
     
     func takeHP() {
         if(PointsCounter.addPoint()) {
-            self.runAction(SKAction.sequence([SKAction.fadeAlphaBy(-0.1, duration: 0.0)]))
-        }
-        if(self.alpha < 0.4) {
-            self.runAction(SKAction.sequence([SKAction.removeFromParent()]))
+            self.runAction(SKAction.sequence([ SKAction.playSoundFileNamed("eat.aif", waitForCompletion: false),  SKAction.fadeAlphaBy(-0.1, duration: 0.0)]))
+            if(self.alpha < 0.4) {
+                self.runAction(SKAction.sequence([SKAction.playSoundFileNamed("bad.aif", waitForCompletion: false), SKAction.fadeAlphaBy(-0.1, duration: 0.0), SKAction.removeFromParent()]))
+            }
         }
     }
     
