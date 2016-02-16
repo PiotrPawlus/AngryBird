@@ -110,6 +110,7 @@ class SharedNode: SKNode {
                 }
             }
         }
+        
         winningNode  = self.setWinningNode()
         self.addChild(winningNode)
         highScoreLabel = self.highScoreForLevel()
