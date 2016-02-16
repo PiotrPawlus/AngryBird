@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+enum EmiterError: ErrorType {
+    case WrongPath
+}
+
 class SharedNode: SKNode {
 
     var size: CGSize!
@@ -91,11 +95,33 @@ class SharedNode: SKNode {
         pointLabel.fontSize = 25
         pointLabel.position = CGPoint(x: size.width / 2, y: size.height - 50.0)
         
+        do {
+            try addSnowEmiter()
+        } catch {
+            if let error = error as? EmiterError {
+                switch error {
+                case .WrongPath:
+                    print("Wrong path to the emitter file")
+                    print("Error massage: \(error)")
+                }
+            }
+        }
 
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    
+    func addSnowEmiter() throws {
+        let snowPath = NSBundle.mainBundle().pathForResource("snow", ofType: "sks")
+        if snowPath == nil {
+            throw EmiterError.WrongPath
+        }
+        let emitter = NSKeyedUnarchiver.unarchiveObjectWithFile(snowPath!) as! SKNode
+        emitter.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+        self.addChild(emitter)
     }
 }
 
