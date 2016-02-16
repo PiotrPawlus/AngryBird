@@ -53,9 +53,7 @@ class SecondLevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: NSTimeInterval) {
-        if PointsCounter.enableCounting {
             shared.pointLabel.text = "Points: \(PointsCounter.points)"
-        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
