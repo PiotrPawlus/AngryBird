@@ -22,7 +22,11 @@ class MenuScene: SKScene {
 
         Level.downloadMaxLevel()
         
-        let yPositonOfButtons = self.frame.size.height / 2 - 10.0
+        let background = BackgroundSpriteNode(imageNamed: "background", size: size)
+        background.zPosition = ObjectZPosition.background
+        self.addChild(background)
+        
+        let yPositonOfButtons = self.frame.size.height - (self.frame.height * 4/10)
         
         self.addChild(self.setTilteLabel())
         firstLevelButton = SKButtonNode(defaultButtonImage: "1oj", activeButtonImage: "1oc", disabledButtonImage: "1z", buttonAction: goToFirstLevel)
@@ -39,7 +43,7 @@ class MenuScene: SKScene {
         self.addChild(thirdLevelButton)
         
         statsButton = SKButtonNode(defaultButtonImage: "wynik", activeButtonImage: "wynik_ciemny", disabledButtonImage: "wynik_ciemny", buttonAction: goToStats)
-        statsButton.position = CGPoint(x: self.frame.width / 2 - 50.0, y: 60.0)
+        statsButton.position = CGPoint(x: self.frame.width / 2 - 50.0, y: self.frame.height - (self.frame.height * 7/10))
         self.addChild(statsButton)
         
         self.unlockLevel(Level.gameLevel)
@@ -64,7 +68,7 @@ class MenuScene: SKScene {
         titleLabel.text = "Angry Bird"
         titleLabel.fontSize = 26
         titleLabel.fontColor = UIColor.whiteColor()
-        titleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 100.0)
+        titleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - (self.frame.height * 2/10))
         return titleLabel
     }
     
